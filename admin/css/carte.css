@@ -1,0 +1,45 @@
+h1
+{
+    color: grey;
+    font: lato;
+
+}
+h2
+{
+    color: grey;
+    font: lato;
+}
+p
+{
+    color: black;
+    font: lato;
+    font-size: 100;
+}
+p2
+{
+    color: #e9967a;
+    font-size: 100;
+
+    font: lato black;
+
+}
+body
+{
+    background-color: #e9967a;
+
+}
+
+#carte
+{
+    width: 800px;
+    margin:0 auto;
+    background-color: white;
+    text-align: center;
+    align-content: center;
+
+    border: solid;
+    border-width: 2px;
+    border-color: #e9967a	;
+
+
+}
