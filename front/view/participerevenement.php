@@ -1,7 +1,7 @@
 <?PHP
+
 include "../entite/participation.php";
 include "../core/participationC.php";
-include "../core/evenementC.php";
 include "../entite/evenement.php";
 session_start();
 // On s'amuse à créer quelques variables de session dans $_SESSION

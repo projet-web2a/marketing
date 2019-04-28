@@ -1,4 +1,26 @@
+<?php
+// On démarre la session (ceci est indispensable dans toutes les pages de notre section membre)
+session_start ();
 
+if (empty($_SESSION['l']) && empty($_SESSION['p'])  )
+{
+
+    $login='0000';
+
+    $role='visiteur';
+
+}
+else
+{
+    $login=$_SESSION['l'];
+    $role=$_SESSION['r'];
+}
+// On récupère nos variables de session
+
+//définir la session une session est un tableau temporaire
+//1 er point c quoi une session
+//
+?>
 <!DOCTYPE html>
 <html lang="zxx">
 
@@ -95,6 +117,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <!---->
             </div>
         </div>
+        </center>
         <div class="search">
             <div class="mobile-nav-button">
                 <button id="trigger-overlay" type="button">
@@ -288,188 +311,45 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             </div>
         </nav>
     </header>
+<center>
 
-    <?PHP
-    include "../core/participationC.php";
-
-    if (isset($_GET['id'])) {
-
-        $evenementC = new EvenementC();
-        $result = $evenementC->recupererEvenement($_GET['id']);
-        foreach ($result as $row) {
-
-            $id_evenement = $row['id_evenement'];
-            $nom_evenement = $row['nom_evenement'];
-            $datedebut = $row['datedebut'];
-            $datefin = $row['datefin'];
-            $nbrparticipant = $row['nbrparticipant'];
-            $nbrvue = $row['nbrvue'];
-            $image = $row['image'];
-            $description = $row['description'];
-
-            ?>
-
-
-            <section class="banner-bottom-wthreelayouts py-lg-5 py-3">
-                <div class="container-fluid">
-
-                    <div class="inner-sec-shop px-lg-4 px-3">
-                        <h3 class="tittle-w3layouts text-center my-lg-4 my-3">Ours events </h3>
-
-                        <div class="row">
-                            <div class="col-lg-3 customer-main">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <div class="customer-img">
-                                            <img src="<?PHP echo $row['image']; ?> " alt=" " weight="50px"
-                                                 height="200px">
-
-
-                                        </div>
-                                        <div class="customer-info text-left py-lg-4 py-2">
-                                            <h4><?PHP echo $row['nom_evenement']; ?></h4>
-                                            <h6>L'événement commence le <?PHP echo $row['datedebut']; ?></h6>
-                                            <h6>L'événement finit le <?PHP echo $row['datefin']; ?></h6>
-                                            <p>
-                                            <p>La description de l'événement<?PHP echo $row['description']; ?> </p></p>
-
-
-                                            <td>
-
-                                                <form method="POST" action="supprimerparticipation.php">
-                                                    <input type="submit" name="supprimer"
-                                                           value="supprimer" class="btn btn-primary">
-                                                    <input type="hidden" value="<?PHP echo $row['id_evenement']; ?>"
-                                                           name="id_evenement">
-
-                                                </form>
-
-                                                <div class="row  pt-3 mt-3 team-social border-top">
-                                                    <h5 class="col-md-4 text-left">Contact</h5>
-                                                    <ul class="col-md-8 d-flex justify-content-right social-icons">
-
-
-                                                        <li>
-                                                            <a href="#">
-                                                                <i class="fab fa-facebook-f"></i>
-                                                            </a>
-                                                        </li>
-                                                        <li class="mx-3">
-                                                            <a href="#">
-                                                                <i class="fab fa-twitter"></i>
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#">
-                                                                <i class="fab fa-google-plus-g"></i>
-                                                            </a>
-                                                        </li>
-
-                                                    </ul>
-                                                </div>
-                                        </div>
+                        <div class="wrap">
+                            <h5 class="text-center mb-4">Login Now</h5>
+                            <div class="login p-5 bg-dark mx-auto mw-100">
+                                <form id="form1" name="form1" method="POST" action="connexion.php">
+                                    <div class="form-group">
+                                        <label class="mb-2">Login</label>
+                                        <input  type="text" name="login" id="login"   placeholder="" required="">
                                     </div>
-                                </div>
+                                    <div class="form-group">
+                                        <label class="mb-2">Password</label>
+                                        <input type="password" name="pwd" id="pwd" placeholder="" required="">
+                                    </div>
+
+                                    <button type="submit" name="button" id="button" class="btn btn-primary submit mb-4">Sign In</button>
+
+                                </form>
                             </div>
+                            <a href="#" class="forgot-pass">Forgot Password?</a><br><small>Do not have an account? </small><a href="register.php" class="signup">Signup</a>
                         </div>
-                    </div>
-            </section>
 
 
-            <?php
-        }
-    }
-    ?>
-
-    <!--jQuery-->
-    <script src="../js/jquery-2.2.3.min.js"></script>
-    <!-- newsletter modal -->
-    <!--search jQuery-->
-    <script src="../js/modernizr-2.6.2.min.js"></script>
-    <script src="../js/classie-search.js"></script>
-    <script src="../js/demo1-search.js"></script>
-    <!--//search jQuery-->
-    <!-- cart-js -->
-    <script src="../js/minicart.js"></script>
-    <script>
-        googles.render();
-
-        googles.cart.on('googles_checkout', function (evt) {
-            var items, len, i;
-
-            if (this.subtotal() > 0) {
-                items = this.items();
-
-                for (i = 0, len = items.length; i < len; i++) {}
-            }
-        });
-    </script>
-    <!-- //cart-js -->
-    <script>
-        $(document).ready(function () {
-            $(".button-log a").click(function () {
-                $(".overlay-login").fadeToggle(200);
-                $(this).toggleClass('btn-open').toggleClass('btn-close');
-            });
-        });
-        $('.overlay-close1').on('click', function () {
-            $(".overlay-login").fadeToggle(200);
-            $(".button-log a").toggleClass('btn-open').toggleClass('btn-close');
-            open = false;
-        });
-    </script>
-    <!-- carousel -->
-    <!-- dropdown nav -->
-    <script>
-        $(document).ready(function () {
-            $(".dropdown").hover(
-                function () {
-                    $('.dropdown-menu', this).stop(true, true).slideDown("fast");
-                    $(this).toggleClass('open');
-                },
-                function () {
-                    $('.dropdown-menu', this).stop(true, true).slideUp("fast");
-                    $(this).toggleClass('open');
-                }
-            );
-        });
-    </script>
-    <!-- //dropdown nav -->
-    <script src="../js/move-top.js"></script>
-    <script src="../js/easing.js"></script>
-    <script>
-        jQuery(document).ready(function($) {
-            $(".scroll").click(function(event) {
-                event.preventDefault();
-                $('html,body').animate({
-                    scrollTop: $(this.hash).offset().top
-                }, 900);
-            });
-        });
-    </script>
-    <script>
-        $(document).ready(function() {
-            /*
-            						var defaults = {
-            							  containerID: 'toTop', // fading element id
-            							containerHoverID: 'toTopHover', // fading element hover id
-            							scrollSpeed: 1200,
-            							easingType: 'linear'
-            						 };
-            						*/
-
-            $().UItoTop({
-                easingType: 'easeOutQuart'
-            });
-
-        });
-    </script>
-    <!--// end-smoth-scrolling -->
-
-
-    <script src="../js/bootstrap.js"></script>
-    <!-- js file -->
+</center>
+    <div class="copyrights text-center">
+        <p>
+            <!-- Please do not remove the backlink to us unless you support further theme's development at https://bootstrapious.com/donate. It is part of the license conditions. Thank you for understanding :)-->
+        </p>
+    </div>
+</div>
+<!-- JavaScript files-->
+<script src="../js/dateevenement.js"></script>
+<script src="../vendor/jquery/jquery.min.js"></script>
+<script src="../vendor/popper.js/umd/popper.min.js"> </script>
+<script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
+<script src="../vendor/jquery.cookie/jquery.cookie.js"> </script>
+<script src="../vendor/chart.js/Chart.min.js"></script>
+<script src="../vendor/jquery-validation/jquery.validate.min.js"></script>
+<!-- Main File-->
+<script src="../js/front.js"></script>
 </body>
 </html>
-
-

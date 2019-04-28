@@ -26,7 +26,7 @@ if (isset($_POST['modifier'])) {
 
     $promotionC->modifierPromotion($promotion1,$_POST['id_ini']);
 
-    header('Location: ../espacepromotion.php');}
+    header('Location: espacepromotion.php');}
 
 ?>
 

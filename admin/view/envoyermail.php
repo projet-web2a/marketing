@@ -38,6 +38,6 @@ mail($to,$sujet,$text);
 echo $text;
   /*$evenementC->modifierEvenement($evenement,$_POST['id_ini']);
     echo $_POST['id_ini'];
-   */ header('Location: ../espacevenement.php');
+   */ header('Location: espacevenement.php');
 
 }

@@ -5,8 +5,21 @@
 	License URL: http://creativecommons.org/licenses/by/3.0/
 -->
 <?php
+
 session_start();
-session_destroy();
+if (empty($_SESSION['l']) && empty($_SESSION['p'])  )
+{
+
+    $login='0000';
+
+    $role='visiteur';
+
+}
+else
+{
+    $login=$_SESSION['l'];
+    $role=$_SESSION['r'];
+}
 
 
 ?>
@@ -59,6 +72,64 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							EyeZone </a>
 					</h1>
 				</div>
+                <?PHP
+
+                require_once "core/promotionC.php";
+                require_once "core/produit.php";
+                $promotionC=new PromotionC();
+                $listepromotion=$promotionC->recuperenouvPromotion();
+                $nbr_notif=$listepromotion->rowCount();
+                $produitC=new produit();
+               $listeproduitC=$produitC->afficherProduit();
+
+                ?>
+                <li class="nav-item dropdown"> <a id="notifications" rel="nofollow" data-target="#" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link"><i class="fa fa-bell-o"></i><span class="badge bg-red badge-corner">Promotion <?PHP echo $nbr_notif ?></span></a>
+                    <ul aria-labelledby="notifications" class="dropdown-menu">
+                        <li><a rel="nofollow" href="#" class="dropdown-item">
+                                <div class="notification">
+
+                                    <div class="notification-content"><i class="fa fa-envelope bg-green"></i>You have <?php echo $nbr_notif?> new promotion </div>
+                                </div></a></li>
+
+                      <?PHP
+                         foreach ($listepromotion as $row){
+                        ?>
+                <?PHP foreach ($listeproduitC as $r) {
+                ?>
+                        <li><a rel="nofollow" href="#" class="dropdown-item">
+
+                                <div class="notification"  >
+                                    <div class="notification-content"><i
+                                                class="fa fa-twitter bg-blue"></i><?PHP echo $row['datedebut']; ?></div>
+                                    <div class="notification-content"><i
+                                                class="fa fa-twitter bg-blue"></i><?PHP echo $row['datefin']; ?></div>
+
+
+                                    <div class="customer-img">
+
+                                        <img src="<?PHP echo $r['url']; ?> " alt=" " weight="50px" height="200px">
+
+
+                                    </div>
+
+                                    <td><form method="GET" action="view/marquercommelu.php" >
+
+                                            <input type="submit" name="participer" value="voir promotion" class="btn btn-primary">
+                                            <input type="hidden" value="<?PHP echo $row['id_promotion']; ?> " name="id_promotion" >
+
+                                        </form>
+                                        <?php
+                                    }
+                                    ?>
+                                    <!--  <div class="notification-content"><i class="fa fa-twitter bg-blue"></i><img src="banner4.jpg" alt=" " weight="50px" height="200px"></div>
+  -->
+                                </div>
+                                <?PHP
+                                }
+                                ?>
+                          </ul>
+                </li>
+
 
 				<div class="col-md-3 top-info-cart text-right mt-lg-4">
 					<ul class="cart-inner-info">
@@ -100,12 +171,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 									<button type="submit" class="btn btn-primary submit mb-4">Sign In</button>
 
 								</form>
-							</div>
+
+                            </div>
 							<!---->
-						</div>
+
+                        </div>
 					</div>
-					<!---->
-				</div>
+
+                    <!---->
+                        <li class="nav-item"><a href="view/deconnexion.php" class="nav-link logout"> <span class="d-none d-sm-inline">Logout</span><i class="fa fa-sign-out"></i></a></li>
+
+                </div>
 			</div>
 			<div class="search">
 				<div class="mobile-nav-button">

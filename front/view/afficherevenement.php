@@ -291,7 +291,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     </header>
     <h3 class="tittle-w3layouts text-center my-lg-4 my-3">Nos événements </h3>
 <?PHP
-include "../entite/evenement.php";
 include "../core/evenementC.php";
 
 
@@ -359,13 +358,12 @@ $listeEvenement=$evenement1C->afficherEvenement();
                                                     </li>
 
                                                 </ul>
-                                            </div>
+                                                </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
             </section>
 
 

@@ -1,6 +1,30 @@
 <?php
-session_start();
-$_SESSION['user']='hanehene';
+
+
+include_once "../core/participationC.php";
+
+session_start ();
+if (empty($_SESSION['l']) && empty($_SESSION['p']))
+{
+
+    header('Location: authentificationmarketing.php');
+
+    /*  echo 'Votre login est <b>'.$_SESSION['l'].'</b> <br>et votre mot de passe est <b>'.$_SESSION['p'].
+          '</b><br>Votre role est : '.$_SESSION['r'].' <br/> Identifiant de la session est :'.session_id().'</br>';
+      echo '<a href="./logout.php">Cliquer pour se déconnecter</a>';
+  */
+}
+
+
+
+// On récupère nos variables de session
+
+//définir la session une session est un tableau temporaire
+//1 er point c quoi une session
+//
+
+
+//$_SESSION['user']='hanehene';
 ?>
 <!DOCTYPE html>
 <html lang="zxx">
@@ -293,13 +317,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     </header>
     <?PHP
 
-    include "../entite/evenement.php";
-    include "../core/evenementC.php";
-    include "../core/participationC.php";
+
     if (isset($_GET['id'])) {
 
         $evenementC = new EvenementC();
-        echo ' la vie en rose';
         $result = $evenementC->recupererEvenement($_GET['id']);
         foreach ($result as $row) {
 

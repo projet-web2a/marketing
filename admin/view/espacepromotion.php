@@ -1,6 +1,5 @@
 <?php
-// On démarre la session (ceci est indispensable dans toutes les pages de notre section membre)
-session_start ();
+session_start();
 
 if (empty($_SESSION['l']) && empty($_SESSION['p'])  )
 {
@@ -15,14 +14,7 @@ else
     $login=$_SESSION['l'];
     $role=$_SESSION['r'];
 }
-// On récupère nos variables de session
-
-//définir la session une session est un tableau temporaire
-//1 er point c quoi une session
-//
 ?>
-
-</div>
 <!DOCTYPE html>
 <html>
 <head>
@@ -143,8 +135,8 @@ else
             <div class="sidebar-header d-flex align-items-center">
                 <div class="avatar"><img src="../img/avatar-1.jpg" alt="..." class="img-fluid rounded-circle"></div>
                 <div class="title">
-                    <h1 class="h4"><?php echo $login?></h1>
-                    <p><?php echo $role?></p>
+                    <h1 class="h4"><?php echo $login ?></h1>
+                    <p> <?php echo $role ?></p>
                 </div>
             </div>
             <!-- Sidebar Navidation Menus--><span class="heading">Main</span>
@@ -178,43 +170,117 @@ else
             <!-- Breadcrumb-->
             <div class="breadcrumb-holder container-fluid">
                 <ul class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="../index.php">Home</a></li>
+                    <li class="breadcrumb-item"><a href="../index.html">Home</a></li>
                     <li class="breadcrumb-item active">Marketing</li>
                 </ul>
             </div>
-<?php
+                            <?PHP
+                            include "../entite/promotion.php";
+                            include "../core/promotionC.php";
 
-            if (isset($_SESSION['l']) && isset($_SESSION['p']))
-            {
+                            $promotion1C=new PromotionC();
+                            $listePromotion1=$promotion1C->afficherPromotion();
+                        // $maction='trier';
+                          //  $maction=$_GET['maction'];
+                            if(isset($_GET['maction']))
+                            {$maction=$_GET['maction'];
+                            echo $maction;
 
-            //   header('Location: formulairepromotion.php');
 
-            echo 'Votre login est <b>'.$_SESSION['l'].'</b> <br>et votre mot de passe est <b>'.$_SESSION['p'].
-                '</b><br>Votre role est : '.$_SESSION['r'].' <br/> Identifiant de la session est :'.session_id().'</br>';
-            echo '<a href="deconnexion.php">Cliquer pour se déconnecter</a>';
+                                $par=$_GET['par'];
+                                if ($maction=='trier')
+                                $listePromotion1=$promotion1C->trier($par);
 
-            }
+                            }
 
-            else {
-            echo 'Veuillez vous connecter </br>';
-            echo '<a href="loginmarketing.php">Cliquer pour se connecter</a>';
 
-            }
-            ?>
-        <div class="copyrights text-center">
-            <p>
-                <!-- Please do not remove the backlink to us unless you support further theme's development at https://bootstrapious.com/donate. It is part of the license conditions. Thank you for understanding :)-->
-            </p>
-        </div>
+                            //var_dump($listeEmployes->fetchAll());
+                            ?>
+                            <table border="1">
+                                <tr>
+                                    <td>Date debut de la promotion</td>
+                                    <td>Date fin de la promotion</td>
+                                    <td>La réference</td>
+                                    <td>La catégorie</td>
+                                    <td>Le taux</td>
+                                    <td>Le prixfinal</td>
+
+                                </tr>
+                                <?PHP
+                                foreach($listePromotion1 as $row){
+                                    ?>
+                                    <tr>
+
+                                        <td><?PHP echo $row['datedebut']; ?></td>
+                                        <td><?PHP echo $row['datefin']; ?></td>
+                                        <td><?PHP echo $row['idProduit']; ?></td>
+                                        <td><?PHP echo $row['categorie']; ?></td>
+                                        <td><?PHP echo $row['taux']; ?></td>
+                                        <td><?PHP echo $row['prixfinal']; ?></td>
+
+                                        <td><form method="GET" action="modifierpromotion.php">
+                                                <input type="submit" name="modifier" value="modifier" class="btn btn-primary">
+                                                <input type="hidden" value="<?PHP echo $row['id_promotion']; ?> " name="id_promotion">
+                                            </form>
+
+
+                                        <td><form method="POST" action="supprimerpromotion.php" >
+                                                <input type="submit" name="supprimer" value="supprimer" class="btn btn-danger">
+                                                <input type="hidden" value="<?PHP echo $row['id_promotion']; ?> " name="id_promotion" >
+                                            </form>
+
+
+                                    </tr>
+
+                                    <?PHP
+                                }
+
+                                ?>
+
+                            </table>
+<center>
+
+ <br>   <a href="formulairepromotion.php" class="btn btn-primary"> ajouter</a>
+    <a class="btn btn-dark dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Trier Par
+    </a>
+
+    <div class="dropdown-menu " aria-labelledby="dropdownMenuLink">
+        <a class="dropdown-item " href="espacepromotion.php?maction=trier&par=datefin">Date fin</a>
+        <a class="dropdown-item " href="espacepromotion.php?maction=trier&par=prixfinal">Prix final</a>
+        <a class="dropdown-item " href="espacepromotion.php?maction=trier&par=idProduit">Id produit</a>
     </div>
-    <!-- JavaScript files-->
-    <script src="../vendor/jquery/jquery.min.js"></script>
-    <script src="../vendor/popper.js/umd/popper.min.js"> </script>
-    <script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
-    <script src="../vendor/jquery.cookie/jquery.cookie.js"> </script>
-    <script src="../vendor/chart.js/Chart.min.js"></script>
-    <script src="../vendor/jquery-validation/jquery.validate.min.js"></script>
-    <!-- Main File-->
-    <script src="../js/front.js"></script>
+    <a href="../index.php" class="btn btn-primary"> retour</a>
+
+   <td>
+
+      <br>
+       <br>
+       <form method="GET" action="chercherpromotion.php">
+            <input type="text" class="btn btn-default dropdown-toggle" name="chercher" placeholder="Tapez pour cherche">
+            <input type="hidden" class="btn-danger"  value="chercher">
+    </form>
+
+
+</center>
+                        </div>
+                    </div>
+                </div>
+
+    <div class="copyrights text-center">
+        <p>
+            <!-- Please do not remove the backlink to us unless you support further theme's development at https://bootstrapious.com/donate. It is part of the license conditions. Thank you for understanding :)-->
+        </p>
+    </div>
+
+<!-- JavaScript files-->
+<script src="../vendor/jquery/jquery.min.js"></script>
+<script src="../vendor/popper.js/umd/popper.min.js"> </script>
+<script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
+<script src="../vendor/jquery.cookie/jquery.cookie.js"> </script>
+<script src="../vendor/chart.js/Chart.min.js"></script>
+<script src="../vendor/jquery-validation/jquery.validate.min.js"></script>
+<!-- Main File-->
+<script src="../js/front.js"></script>
 </body>
 </html>

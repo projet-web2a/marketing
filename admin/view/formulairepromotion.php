@@ -1,5 +1,27 @@
 <?PHP
 include "../core/promotionC.php";
+session_start ();
+if (empty($_SESSION['l']) && empty($_SESSION['p']))
+{
+
+    header('Location: authentificationmarketing.php');
+
+    /*  echo 'Votre login est <b>'.$_SESSION['l'].'</b> <br>et votre mot de passe est <b>'.$_SESSION['p'].
+          '</b><br>Votre role est : '.$_SESSION['r'].' <br/> Identifiant de la session est :'.session_id().'</br>';
+      echo '<a href="./logout.php">Cliquer pour se déconnecter</a>';
+  */
+}
+
+
+    $login=$_SESSION['l'];
+    $role=$_SESSION['r'];
+
+// On récupère nos variables de session
+
+//définir la session une session est un tableau temporaire
+//1 er point c quoi une session
+//
+
 $var=new PromotionC();
 $listeproduit=$var->afficherProduit();
 
@@ -48,7 +70,7 @@ $listeproduit=$var->afficherProduit();
                 <div class="navbar-holder d-flex align-items-center justify-content-between">
                     <!-- Navbar Header-->
                     <div class="navbar-header">
-                        <!-- Navbar Brand --><a href="../index.html" class="navbar-brand d-none d-sm-inline-block">
+                        <!-- Navbar Brand --><a href="../index.php" class="navbar-brand d-none d-sm-inline-block">
                             <div class="brand-text d-none d-lg-inline-block"> EyeZone</div>
                             <div class="brand-text d-none d-sm-inline-block d-lg-none"><strong>BD</strong></div></a>
                         <!-- Toggle Button--><a id="toggle-btn" href="#" class="menu-btn active"><span></span><span></span><span></span></a>
@@ -125,19 +147,19 @@ $listeproduit=$var->afficherProduit();
             <div class="sidebar-header d-flex align-items-center">
                 <div class="avatar"><img src="../img/avatar-1.jpg" alt="..." class="img-fluid rounded-circle"></div>
                 <div class="title">
-                    <h1 class="h4">Wafa Rabeh</h1>
-                    <p>Manager</p>
+                    <h1 class="h4"><?php echo $login?></h1>
+                    <p><?php echo $role ?></p>
                 </div>
             </div>
             <!-- Sidebar Navidation Menus--><span class="heading">Main</span>
             <ul class="list-unstyled">
-                <li><a href="../index.html"> <i class="icon-home"></i>Home </a></li>
+                <li><a href="../index.php"> <i class="icon-home"></i>Home </a></li>
                 <li><a href="../tables.html"> <i class="icon-grid"></i>Produits </a></li>
-                <li><a href="../charts.html"> <i class="fa fa-bar-chart"></i>Commandes </a></li>                <li><a href="forms.html"> <i class="icon-padnote"></i>Clients </a></li>
+                <li><a href="../charts.html"> <i class="fa fa-bar-chart"></i>Commandes </a></li>                <li><a href="../forms.html"> <i class="icon-padnote"></i>Clients </a></li>
                 <li><li class="active"><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="icon-interface-windows"></i>Marketing</a>
                     <ul id="exampledropdownDropdown" class="collapse list-unstyled ">
-                        <li><a href="../espacevenement.php">Evenement</a></li>
-                        <li><a href="../espacepromotion.php">Promotion</a></li>
+                        <li><a href="espacevenement.php">Evenement</a></li>
+                        <li><a href="espacepromotion.php">Promotion</a></li>
                     </ul>
                 </li>
                 <li><a href="../login.html"> <i class="icon-interface-windows"></i>Livraisons </a></li>
@@ -160,7 +182,7 @@ $listeproduit=$var->afficherProduit();
             <!-- Breadcrumb-->
             <div class="breadcrumb-holder container-fluid">
                 <ul class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="../index.html">Home</a></li>
+                    <li class="breadcrumb-item"><a href="../index.php">Home</a></li>
                     <li class="breadcrumb-item active">Marketing</li>
                 </ul>
             </div>
@@ -220,7 +242,7 @@ $listeproduit=$var->afficherProduit();
                                 </div>
 
                                 <input id="formsend" type="submit"   name="formsend" class="btn btn-primary">
-                                <a href="../espacepromotion.php"  class="btn btn-primary">Retour</a>
+                                <a href="espacepromotion.php"  class="btn btn-primary">Retour</a>
 
                                 <!-- <a id="login"  class="btn btn-primary">Login</a>-->
                                 <!-- This should be submit button but I replaced it with <a> for demo purposes-->

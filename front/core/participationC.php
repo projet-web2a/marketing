@@ -1,6 +1,7 @@
 <?PHP
-include_once "C:/xampp/htdocs/monprojet/front/config.php";
-
+include_once "evenementC.php";
+include_once 'promotionC.php';
+include_once '../entite/participation.php';
 class ParticipationC
 {
 
@@ -95,9 +96,7 @@ class ParticipationC
 
     function recupererParticipation($ide,$id){
         $db = config::getConnexion();
-        echo "la vie en rose2";
         $sql="SELECT * from participation JOIN client ON participation.username=client.username where id_evenement=$ide" ;
-        echo "la vie en rose1";
         //$req->bindValue(':id_evenement',$id);
 
 

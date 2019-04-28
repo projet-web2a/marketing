@@ -33,7 +33,7 @@ if (!empty($_POST['login']) && !empty($_POST['pwd'])){
             $_SESSION['l']=$_POST['login'];
             $_SESSION['p']=$_POST['pwd'];
             $_SESSION['r']=$t['role'];
-         header("location: ../index.php");
+         header("location: afficherevenement.php");
 
         }
 

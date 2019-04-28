@@ -1,4 +1,18 @@
-DOCTYPE html>
+<?PHP
+session_start();
+if (empty($_SESSION['l']) && empty($_SESSION['p']))
+{
+
+header('Location: authentificationmarketing.php');
+
+/*  echo 'Votre login est <b>'.$_SESSION['l'].'</b> <br>et votre mot de passe est <b>'.$_SESSION['p'].
+    '</b><br>Votre role est : '.$_SESSION['r'].' <br/> Identifiant de la session est :'.session_id().'</br>';
+echo '<a href="./logout.php">Cliquer pour se déconnecter</a>';
+*/
+}
+?>
+<!DOCTYPE html>
+
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -41,7 +55,7 @@ DOCTYPE html>
                 <div class="navbar-holder d-flex align-items-center justify-content-between">
                     <!-- Navbar Header-->
                     <div class="navbar-header">
-                        <!-- Navbar Brand --><a href="../index.html" class="navbar-brand d-none d-sm-inline-block">
+                        <!-- Navbar Brand --><a href="../index.php" class="navbar-brand d-none d-sm-inline-block">
                             <div class="brand-text d-none d-lg-inline-block"> EyeZone</div>
                             <div class="brand-text d-none d-sm-inline-block d-lg-none"><strong>BD</strong></div></a>
                         <!-- Toggle Button--><a id="toggle-btn" href="#" class="menu-btn active"><span></span><span></span><span></span></a>
@@ -124,13 +138,13 @@ DOCTYPE html>
             </div>
             <!-- Sidebar Navidation Menus--><span class="heading">Main</span>
             <ul class="list-unstyled">
-                <li><a href="../index.html"> <i class="icon-home"></i>Home </a></li>
+                <li><a href="../index.php"> <i class="icon-home"></i>Home </a></li>
                 <li><a href="../tables.html"> <i class="icon-grid"></i>Produits </a></li>
                 <li><a href="../charts.html"> <i class="fa fa-bar-chart"></i>Commandes </a></li>                <li><a href="forms.html"> <i class="icon-padnote"></i>Clients </a></li>
                 <li><li class="active"><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="icon-interface-windows"></i>Marketing</a>
                     <ul id="exampledropdownDropdown" class="collapse list-unstyled ">
-                        <li><a href="../espacevenement.php">Evenement</a></li>
-                        <li><a href="../espacepromotion.php">Promotion</a></li>
+                        <li><a href="espacevenement.php">Evenement</a></li>
+                        <li><a href="espacepromotion.php">Promotion</a></li>
                     </ul>
                 </li>
                 <li><a href="../login.html"> <i class="icon-interface-windows"></i>Livraisons </a></li>
@@ -153,7 +167,7 @@ DOCTYPE html>
             <!-- Breadcrumb-->
             <div class="breadcrumb-holder container-fluid">
                 <ul class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="../index.html">Home</a></li>
+                    <li class="breadcrumb-item"><a href="../index.php">Home</a></li>
                     <li class="breadcrumb-item active">Marketing</li>
                 </ul>
             </div>

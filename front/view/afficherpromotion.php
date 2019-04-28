@@ -95,6 +95,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <!---->
             </div>
         </div>
+        </center>
         <div class="search">
             <div class="mobile-nav-button">
                 <button id="trigger-overlay" type="button">
@@ -288,96 +289,80 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             </div>
         </nav>
     </header>
+    <h3 class="tittle-w3layouts text-center my-lg-4 my-3">Nos événements </h3>
+    <?PHP
+    include "../core/promotionC.php";
+
+
+
+    $promotionC=new PromotionC();
+    $listePromotion=$promotionC->afficherPromotion();
+    $listeproduitC=$promotionC->afficherProduit();
+
+    //var_dump($listeEmployes->fetchAll());
+    ?>
 
     <?PHP
-    include "../core/participationC.php";
+    foreach($listePromotion as $row){
 
-    if (isset($_GET['id'])) {
-
-        $evenementC = new EvenementC();
-        $result = $evenementC->recupererEvenement($_GET['id']);
-        foreach ($result as $row) {
-
-            $id_evenement = $row['id_evenement'];
-            $nom_evenement = $row['nom_evenement'];
-            $datedebut = $row['datedebut'];
-            $datefin = $row['datefin'];
-            $nbrparticipant = $row['nbrparticipant'];
-            $nbrvue = $row['nbrvue'];
-            $image = $row['image'];
-            $description = $row['description'];
-
+        ?>
+    <?PHP foreach ($listeproduitC as $r) {
             ?>
-
-
             <section class="banner-bottom-wthreelayouts py-lg-5 py-3">
                 <div class="container-fluid">
 
                     <div class="inner-sec-shop px-lg-4 px-3">
-                        <h3 class="tittle-w3layouts text-center my-lg-4 my-3">Ours events </h3>
+
 
                         <div class="row">
                             <div class="col-lg-3 customer-main">
                                 <div class="card">
                                     <div class="card-body">
                                         <div class="customer-img">
-                                            <img src="<?PHP echo $row['image']; ?> " alt=" " weight="50px"
-                                                 height="200px">
+                                            <img src="<?PHP echo $r['url']; ?> " alt=" " weight="50px" height="200px">
 
 
                                         </div>
                                         <div class="customer-info text-left py-lg-4 py-2">
-                                            <h4><?PHP echo $row['nom_evenement']; ?></h4>
-                                            <h6>L'événement commence le <?PHP echo $row['datedebut']; ?></h6>
-                                            <h6>L'événement finit le <?PHP echo $row['datefin']; ?></h6>
-                                            <p>
-                                            <p>La description de l'événement<?PHP echo $row['description']; ?> </p></p>
+                                            <h4><?PHP echo $row['datefin']; ?></h4>
 
 
-                                            <td>
-
-                                                <form method="POST" action="supprimerparticipation.php">
-                                                    <input type="submit" name="supprimer"
-                                                           value="supprimer" class="btn btn-primary">
-                                                    <input type="hidden" value="<?PHP echo $row['id_evenement']; ?>"
-                                                           name="id_evenement">
-
-                                                </form>
-
-                                                <div class="row  pt-3 mt-3 team-social border-top">
-                                                    <h5 class="col-md-4 text-left">Contact</h5>
-                                                    <ul class="col-md-8 d-flex justify-content-right social-icons">
+                                            <div class="row  pt-3 mt-3 team-social border-top">
+                                                <h5 class="col-md-4 text-left">Contact</h5>
+                                                <ul class="col-md-8 d-flex justify-content-right social-icons">
 
 
-                                                        <li>
-                                                            <a href="#">
-                                                                <i class="fab fa-facebook-f"></i>
-                                                            </a>
-                                                        </li>
-                                                        <li class="mx-3">
-                                                            <a href="#">
-                                                                <i class="fab fa-twitter"></i>
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#">
-                                                                <i class="fab fa-google-plus-g"></i>
-                                                            </a>
-                                                        </li>
+                                                    <li>
+                                                        <a href="#">
+                                                            <i class="fab fa-facebook-f"></i>
+                                                        </a>
+                                                    </li>
+                                                    <li class="mx-3">
+                                                        <a href="#">
+                                                            <i class="fab fa-twitter"></i>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">
+                                                            <i class="fab fa-google-plus-g"></i>
+                                                        </a>
+                                                    </li>
 
-                                                    </ul>
-                                                </div>
+                                                </ul>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
             </section>
 
 
             <?php
         }
+        ?>
+
+        <?php
     }
     ?>
 

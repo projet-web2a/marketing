@@ -104,7 +104,6 @@ class EvenementC
         $db = config::getConnexion();
 
         $sql="SELECT * from evenement where id_evenement=$id";
-        echo "la vie en rose";
         //$req->bindValue(':id_evenement',$id);
 
 

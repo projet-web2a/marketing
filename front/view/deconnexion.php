@@ -7,6 +7,11 @@ session_unset ();
 
 // On détruit notre session
 session_destroy ();
+include "../core/promotionC.php";
+include_once '../entite/promotion.php';
+$promotion= new PromotionC();
+$promotion->Marquerpromononlu();
+header("Location:afficherpromotion.php");
 
 // On redirige le visiteur vers la page d'accueil
 header ('location: ../index.php');

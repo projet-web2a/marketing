@@ -12,5 +12,5 @@ if (isset($_POST['modifier'])){
     $evenement=new Evenement($_POST['id_ini'],$_POST['nom_evenement'],$_POST['datedebut'],$_POST['datefin'],$_POST['nbrparticipant'],$_POST['nbrvue'],$_POST['image'],$_POST['description']);
     $evenementC->modifierEvenement($evenement,$_POST['id_ini']);
     echo $_POST['id_ini'];
-    header('Location: ../espacevenement.php');
+    header('Location: espacevenement.php');
 }

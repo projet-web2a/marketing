@@ -1,13 +1,11 @@
 <?PHP
+
 include "../entite/participation.php";
 include "../core/participationC.php";
-include "../core/evenementC.php";
 include "../entite/evenement.php";
-include  "../config.php";
 $_SESSION['prenom'] = 'hane';
 $_SESSION['user'] = 'hanehene';
 
-global $db;
 if (isset($_POST['supprimer'])) {
 
     $evenementC = new EvenementC();

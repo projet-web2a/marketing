@@ -1,3 +1,16 @@
+<?php
+if (empty($_SESSION['l']) && empty($_SESSION['p']))
+{
+
+    header('Location: authentificationmarketing.php');
+
+    /*  echo 'Votre login est <b>'.$_SESSION['l'].'</b> <br>et votre mot de passe est <b>'.$_SESSION['p'].
+        '</b><br>Votre role est : '.$_SESSION['r'].' <br/> Identifiant de la session est :'.session_id().'</br>';
+    echo '<a href="./logout.php">Cliquer pour se déconnecter</a>';
+    */
+}
+
+?>
 <HTML>
 <head>
     <meta charset="utf-8">
@@ -21,8 +34,8 @@
     <!-- Favicon-->
     <link rel="shortcut icon" href="../img/favicon.ico">
     <!-- Tweaks for older IEs--><!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+    <script src="../https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="../https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
 </head>
 <body>
 <div class="page login-page">

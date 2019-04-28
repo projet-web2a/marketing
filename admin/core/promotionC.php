@@ -1,5 +1,6 @@
 <?PHP
 include_once "C:/xampp/htdocs/monprojet/admin/config.php";
+
 class PromotionC
 {
     function afficherPromotion()
@@ -17,11 +18,11 @@ class PromotionC
     function ajouterPromotion($promotion)
     {echo"la vie en rose";
         $db = config::getConnexion();
-        $sql = "INSERT INTO promotion(id_promotion,datedebut,datefin,idProduit,categorie,taux,prixfinal) VALUES(:id_promotion,:datedebut,:datefin,:idProduit,:categorie,:taux,:prixfinal)";
+        $sql = "INSERT INTO promotion(id_promotion,datedebut,datefin,idProduit,categorie,taux,prixfinal,lu) VALUES(:id_promotion,:datedebut,:datefin,:idProduit,:categorie,:taux,:prixfinal,:lu)";
 
         try {
             $req = $db->prepare($sql);
-
+            $lu = $promotion->getlu();
             $id_promotion = $promotion->getId();
             $datedebut = $promotion->getDatedebut();
             $datefin = $promotion->getDatefin();
@@ -37,6 +38,8 @@ class PromotionC
             $req->bindValue(':categorie', $categorie);
             $req->bindValue(':taux', $taux);
             $req->bindValue(':prixfinal', $prixfinal);
+            $req->bindValue(':lu', $lu);
+
 
             echo"la vie en rose";
 
@@ -127,7 +130,7 @@ class PromotionC
     }
     function rechercherListepromotion($par){
         $db = config::getConnexion();
-        $sql="SELECT * from promotion where categorie=$par";
+        $sql="SELECT * from promotion where categorie='$par'";
         try{
             $liste=$db->query($sql);
             return $liste;
@@ -177,11 +180,12 @@ class PromotionC
 
     }
     public function trier($par)
-    {
+    {        $db = config::getConnexion();
+
         $sql="SELECT * FROM promotion order by $par ";
 
-        $db = config::getConnexion();
 try{
+    echo' gg';
             $result=$db->query($sql);
 
             return $result;
@@ -193,7 +197,7 @@ try{
     }
     function afficherProduit()
     {
-        $sql = "SElECT * From produit";
+        $sql = "SElECT * From produit where promo=0";
         $db = config::getConnexion();
         try {
             $liste = $db->query($sql);
@@ -216,6 +220,26 @@ try{
         echo"la vie en rose";
 
         $req->execute();
+    }
+    function MarquerCommelu($id)
+    {
+        $database=config::GetConnexion();
+        $sql="UPDATE promotion SET lu=1 where id_promotion=$id";
+
+        $q = $database->prepare($sql);
+        $q->execute();
+    }
+    function Modifierproduit($id,$taux)
+    { $db = config::getConnexion();
+        $sql = "UPDATE produit set promo=$taux where refe=$id";
+
+        try {
+          $req = $db->prepare($sql);
+        $req->execute();
+    }
+    catch (Exception $e){
+        die('Erreur: '.$e->getMessage());
+    }
     }
 }
 
