@@ -9,23 +9,30 @@ include "../entite/promotion.php";
 include "../core/promotionC.php";
 if (isset($_POST['envoyer'])){
   $to=$_POST['destination'] ;
-//$to='hane.bhar@esprit.tn';
-$sujet='test';
-$text=$_POST['description'];
+
+  $sujet=$_POST['description'];
+$delim=md5(uniqid(rand()));
+echo $delim;
+
 $entete='From : user \n';
 $entete .="Reply-to: user \n";
 $entete .= "MIME-Version: 1.0 \n";
-$entete .="Content-type: multipart/mixed;";
-    $image=$_FILES['image']['name'];
+$entete .="Content-Type: multipart/mixed;boundary=\"$delim\" \n";
 
-move_uploaded_file($_FILES['file']['tmp_name'],$image);
-//$header='From :henebhar@gmail.com';
-
+$fichier="../img/".$_POST['image'];
+    //$fichier= "../img/evenement1.jpg";
+    $jointe= file_get_contents($fichier);
+    $jointe=chunk_split(base64_encode($jointe));
+    $text ="Content-Type: image/jpeg;name\"image.jpg\" \n";
+    $text .="Content-Transfer-Encoding: base64 \n";
+    $text .="Content-Disposition: attachment; filename=\"image.jpg\"\n";
+    $text .="\n";
+    $text .=$jointe;
+    $text .="\n";
+    $text .='--$delim--';
 
     mail($to,$sujet,$text,$entete);
-echo $text;
-  /*$evenementC->modifierEvenement($evenement,$_POST['id_ini']);
-    echo $_POST['id_ini'];
-   */// header('Location: espacevenement.php');
+
+  header('Location: espacevenement.php');
 
 }

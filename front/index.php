@@ -22,6 +22,17 @@ else
 }
 
 
+
+
+include_once "core/promotionC.php";
+include_once "core/produit.php";
+$promotionC=new PromotionC();
+$listepromotion=$promotionC->recuperenouvPromotion();
+$produitC=new produit();
+$listeproduitC=$produitC->afficherProduit();
+
+$nbr_notif=$listepromotion->rowCount();
+
 ?>
 <!DOCTYPE html>
 <html lang="zxx">
@@ -30,7 +41,7 @@ else
 	<title>EyeZone</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta charset="utf-8">
-	<meta name="keywords" content="Goggles a Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
+	<meta name="keywords" content="Goggles a Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
 	<script>
 		addEventListener("load", function () {
@@ -68,21 +79,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				</div>
 				<div class="col-md-6 logo-w3layouts text-center">
 					<h1 class="logo-w3layouts">
-						<a class="navbar-brand" href="index.php">
-							EyeZone </a>
+						<a class="navbar-brand" href="index.php">EyeZone </a>
 					</h1>
 				</div>
-                <?PHP
-
-                require_once "core/promotionC.php";
-               require_once "core/produit.php";
-                $promotionC=new PromotionC();
-                $listepromotion=$promotionC->recuperenouvPromotion();
-                $nbr_notif=$listepromotion->rowCount();
-                $produitC=new produit();
-               $listeproduitC=$produitC->afficherProduit();
-
-                ?>
+<!--Notification-->
                 <li class="nav-item dropdown"> <a id="notifications" rel="nofollow" data-target="#" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link"><i class="fa fa-bell-o"></i><span class="badge bg-red badge-corner">Promotion <?PHP echo $nbr_notif ?></span></a>
                     <ul aria-labelledby="notifications" class="dropdown-menu">
                         <li><a rel="nofollow" href="#" class="dropdown-item">
@@ -91,11 +91,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                     <div class="notification-content"><i class="fa fa-envelope bg-green"></i>You have <?php echo $nbr_notif?> new promotion </div>
                                 </div></a></li>
 
-                      <?PHP
-                         foreach ($listepromotion as $row){
+                        <?PHP
+                        foreach ($listepromotion as $row){
                         ?>
-                <?PHP foreach ($listeproduitC as $r) {
-                ?>
+
                         <li><a rel="nofollow" href="#" class="dropdown-item">
 
                                 <div class="notification"  >
@@ -103,14 +102,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                                 class="fa fa-twitter bg-blue"></i><?PHP echo $row['datedebut']; ?></div>
                                     <div class="notification-content"><i
                                                 class="fa fa-twitter bg-blue"></i><?PHP echo $row['datefin']; ?></div>
-
+                                    <?PHP foreach ($listeproduitC as $r) {
+                                    ?>
 
                                     <div class="customer-img">
 
-                                        <img src="<?PHP echo $r['url']; ?> " alt=" " weight="50px" height="200px">
+                                        <img src="images/<?PHP echo $r['url']; ?> " alt=" " weight="50px" height="200px">
 
 
                                     </div>
+                                        <?php
+                                    }
+                                    ?>
 
                                     <td><form method="GET" action="view/marquercommelu.php" >
 
@@ -118,20 +121,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                             <input type="hidden" value="<?PHP echo $row['id_promotion']; ?> " name="id_promotion" >
 
                                         </form>
-                                        <?php
-                                    }
-                                    ?>
-                                    <!--  <div class="notification-content"><i class="fa fa-twitter bg-blue"></i><img src="banner4.jpg" alt=" " weight="50px" height="200px"></div>
-  -->
+
+                                        <!--  <div class="notification-content"><i class="fa fa-twitter bg-blue"></i><img src="banner4.jpg" alt=" " weight="50px" height="200px"></div>
+      -->
                                 </div>
                                 <?PHP
                                 }
                                 ?>
-                          </ul>
+                    </ul>
                 </li>
 
-
-				<div class="col-md-3 top-info-cart text-right mt-lg-4">
+                <div class="col-md-3 top-info-cart text-right mt-lg-4">
 					<ul class="cart-inner-info">
 						<li class="button-log">
 							<a class="btn-open" href="#">
@@ -210,7 +210,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<button class="navbar-toggler mx-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
 				    aria-expanded="false" aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon">
-						
+
 					</span>
 				</button>
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -280,8 +280,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" href="" id="navbarDropdown1" role="button" data-toggle="dropdown" aria-haspopup="true"
 							    aria-expanded="false"  >
-								   Shop 
-								 
+								   Shop
+
 							</a>
 							<ul class="dropdown-menu mega-menu ">
 								<li>
@@ -501,7 +501,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 													<i class="fas fa-cart-plus"></i>
 												</button>
 
-												
+
 											</form>
 
 										</div>
@@ -569,7 +569,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 													<i class="fas fa-cart-plus"></i>
 												</button>
 
-												
+
 											</form>
 
 										</div>
@@ -589,7 +589,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 											<a href="single.html" class="link-product-add-cart">Quick View</a>
 										</div>
 									</div>
-									
+
 								</div>
 								<div class="item-info-product">
 
@@ -638,7 +638,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 												<button type="submit" class="googles-cart pgoogles-cart">
 													<i class="fas fa-cart-plus"></i>
 												</button>
-												
+
 											</form>
 
 										</div>
@@ -707,7 +707,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 													<i class="fas fa-cart-plus"></i>
 												</button>
 
-												
+
 											</form>
 
 										</div>
@@ -780,7 +780,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 												<button type="submit" class="googles-cart pgoogles-cart">
 													<i class="fas fa-cart-plus"></i>
 												</button>
-												
+
 											</form>
 
 										</div>
@@ -849,7 +849,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 													<i class="fas fa-cart-plus"></i>
 												</button>
 
-												
+
 											</form>
 										</div>
 									</div>
@@ -916,7 +916,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 												<button type="submit" class="googles-cart pgoogles-cart">
 													<i class="fas fa-cart-plus"></i>
 												</button>
-											
+
 											</form>
 
 										</div>
@@ -1873,7 +1873,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             							  containerID: 'toTop', // fading element id
             							containerHoverID: 'toTopHover', // fading element hover id
             							scrollSpeed: 1200,
-            							easingType: 'linear' 
+            							easingType: 'linear'
             						 };
             						*/
 

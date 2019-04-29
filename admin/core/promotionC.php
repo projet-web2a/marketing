@@ -1,6 +1,5 @@
 <?PHP
-include_once "C:/xampp/htdocs/monprojet/admin/config.php";
-
+include_once "../config.php";
 class PromotionC
 {
     function afficherPromotion()
@@ -16,7 +15,8 @@ class PromotionC
     }
 
     function ajouterPromotion($promotion)
-    {echo"la vie en rose";
+    {
+        echo "la vie en rose";
         $db = config::getConnexion();
         $sql = "INSERT INTO promotion(id_promotion,datedebut,datefin,idProduit,categorie,taux,prixfinal,lu) VALUES(:id_promotion,:datedebut,:datefin,:idProduit,:categorie,:taux,:prixfinal,:lu)";
 
@@ -41,7 +41,7 @@ class PromotionC
             $req->bindValue(':lu', $lu);
 
 
-            echo"la vie en rose";
+            echo "la vie en rose";
 
             $req->execute();
             // header('Location: ../espacemarketing.php');
@@ -71,130 +71,142 @@ class PromotionC
         }
     }
 
-    function modifierPromotion($promotion,$id){
+    function modifierPromotion($promotion, $id)
+    {
         $db = config::getConnexion();
-        $sql="UPDATE promotion SET datedebut=:datedebut, datefin=:datefin,idProduit=:idProduit,categorie=:categorie,taux=:taux,prixfinal=:prixfinal where id_promotion=$id";
+        $sql = "UPDATE promotion SET datedebut=:datedebut, datefin=:datefin,idProduit=:idProduit,categorie=:categorie,taux=:taux,prixfinal=:prixfinal where id_promotion=$id";
 
 
         //$db->setAttribute(PDO::ATTR_EMULATE_PREPARES,false);
-        try{
-            $req=$db->prepare($sql);
+        try {
+            $req = $db->prepare($sql);
 
-           // $id_promotion = $promotion->getId();
+            // $id_promotion = $promotion->getId();
             $datedebut = $promotion->getDatedebut();
             $datefin = $promotion->getDatefin();
             $idProduit = $promotion->getRefe();
             $categorie = $promotion->getCategorie();
             $taux = $promotion->getTaux();
-    $prixfinal = $promotion->getPrix();
+            $prixfinal = $promotion->getPrix();
 
-            $datas = array( ':datedebut'=>$datedebut, ':datefin'=>$datefin,':idProduit'=>$idProduit,':categorie'=>$categorie,':taux'=>$taux,':prixfinal'=>$prixfinal );
-         //   $req->bindValue(':id_promotion', $id_promotion);
+            $datas = array(':datedebut' => $datedebut, ':datefin' => $datefin, ':idProduit' => $idProduit, ':categorie' => $categorie, ':taux' => $taux, ':prixfinal' => $prixfinal);
+            //   $req->bindValue(':id_promotion', $id_promotion);
             $req->bindValue(':datedebut', $datedebut);
             $req->bindValue(':datefin', $datefin);
             $req->bindValue(':idProduit', $idProduit);
             $req->bindValue(':categorie', $categorie);
             $req->bindValue(':taux', $taux);
-           $req->bindValue(':prixfinal', $prixfinal);
+            $req->bindValue(':prixfinal', $prixfinal);
 
 
-
-
-
-            $s=$req->execute();
+            $s = $req->execute();
 
             // header('Location: index.php');
-        }
-        catch (Exception $e){
-            echo " Erreur ! ".$e->getMessage();
-            echo " Les datas : " ;
+        } catch (Exception $e) {
+            echo " Erreur ! " . $e->getMessage();
+            echo " Les datas : ";
             print_r($datas);
         }
 
     }
-    function recupererPromotion($id){
+
+    function recupererPromotion($id)
+    {
         $db = config::getConnexion();
         echo "la vie en rose1";
 
-        $sql="SELECT * from promotion where id_promotion=$id";
+        $sql = "SELECT * from promotion where id_promotion=$id";
         echo "la vie en rose2";
 
 
-        try{
-            $liste=$db->query($sql);
+        try {
+            $liste = $db->query($sql);
             return $liste;
-        }
-        catch (Exception $e){
-            die('Erreur: '.$e->getMessage());
+        } catch (Exception $e) {
+            die('Erreur: ' . $e->getMessage());
         }
     }
-    function rechercherListepromotion($par){
+
+    function rechercherListepromotion($par)
+    {
         $db = config::getConnexion();
-        $sql="SELECT * from promotion where categorie='$par'";
-        try{
-            $liste=$db->query($sql);
+        $sql = "SELECT * from promotion where categorie='$par'";
+        try {
+            $liste = $db->query($sql);
             return $liste;
-        }
-        catch (Exception $e){
-            die('Erreur: '.$e->getMessage());
+        } catch (Exception $e) {
+            die('Erreur: ' . $e->getMessage());
         }
     }
-  function calculerPrix($id)
-  {
-      $db = config::getConnexion();
-  $sql="SELECT prix from produit where refe=$id";
 
-      try{
-          $ancienprix=$db->query($sql);
-        //  echo"nnn";
-          $ancienprix->execute();
-          $ancienprix1=$ancienprix->fetch();
-          return $ancienprix1;
-      }
-      catch (Exception $e){
-          die('Erreur: '.$e->getMessage());
-      }
+    function calculerPrix($id)
+    {
+        $db = config::getConnexion();
+        $sql = "SELECT prix from produit where refe=$id";
 
-
+        try {
+            $ancienprix = $db->query($sql);
+            //  echo"nnn";
+            $ancienprix->execute();
+            $ancienprix1 = $ancienprix->fetch();
+            return $ancienprix1;
+        } catch (Exception $e) {
+            die('Erreur: ' . $e->getMessage());
+        }
 
 
-  }
+    }
+
     function recupererUrl($id)
     {
         $db = config::getConnexion();
-        $sql="SELECT url from produit where refe=$id";
+        $sql = "SELECT url from produit where refe=$id";
 
-        try{
-            $ancienprix=$db->query($sql);
-            //  echo"nnn";
+        try {
+            $ancienprix = $db->query($sql);
+            echo "nnn";
             $ancienprix->execute();
-            $ancienprix1=$ancienprix->fetch();
+            $ancienprix1 = $ancienprix->fetch();
             return $ancienprix1;
+        } catch (Exception $e) {
+            die('Erreur: ' . $e->getMessage());
         }
-        catch (Exception $e){
-            die('Erreur: '.$e->getMessage());
+    }
+
+    function recupererdesc($id)
+    {
+        $db = config::getConnexion();
+        $sql = "SELECT descr from produit where refe=$id";
+
+        try {
+            $ancienprix = $db->query($sql);
+            echo "nnn";
+            $ancienprix->execute();
+            $ancienprix1 = $ancienprix->fetch();
+            return $ancienprix1;
+        } catch (Exception $e) {
+            die('Erreur: ' . $e->getMessage());
         }
-
-
-
 
     }
+
     public function trier($par)
-    {        $db = config::getConnexion();
+    {
+        $db = config::getConnexion();
 
-        $sql="SELECT * FROM promotion order by $par ";
+        $sql = "SELECT * FROM promotion order by $par ";
 
-try{
-    echo' gg';
-            $result=$db->query($sql);
+        try {
+            echo ' gg';
+            $result = $db->query($sql);
 
             return $result;
 
-        }
-        catch (Exception $e){
-            die('Erreur: '.$e->getMessage());
+        } catch (Exception $e) {
+            die('Erreur: ' . $e->getMessage());
         }
     }
+
     function afficherProduit()
     {
         $sql = "SElECT * From produit where promo=0";
@@ -206,9 +218,10 @@ try{
             die('Erreur: ' . $e->getMessage());
         }
     }
-    function Ajouternotifcation($refe,$url,$prixfinal,$prix,$lu)
+
+    function Ajouternotifcation($refe, $url, $prixfinal, $prix, $lu)
     {
-        $database=config::GetConnexion();
+        $database = config::GetConnexion();
         $req = $database->prepare("INSERT INTO notificationpromo(idNot,refe,url,prixfinal,prix,lu) Values(0,:refe,:url,:prixfinal,:prix,0)");
 
         $req->bindValue(':refe', $refe);
@@ -217,31 +230,69 @@ try{
         $req->bindValue(':prix', $prix);
         $req->bindValue(':lu', $lu);
 
-        echo"la vie en rose";
+        echo "la vie en rose";
 
         $req->execute();
     }
+
     function MarquerCommelu($id)
     {
-        $database=config::GetConnexion();
-        $sql="UPDATE promotion SET lu=1 where id_promotion=$id";
+        $database = config::GetConnexion();
+        $sql = "UPDATE promotion SET lu=1 where id_promotion=$id";
 
         $q = $database->prepare($sql);
         $q->execute();
     }
-    function Modifierproduit($id,$taux)
-    { $db = config::getConnexion();
+
+    function Modifierproduit($id, $taux)
+    {
+        $db = config::getConnexion();
         $sql = "UPDATE produit set promo=$taux where refe=$id";
 
         try {
-          $req = $db->prepare($sql);
-        $req->execute();
+            $req = $db->prepare($sql);
+            $req->execute();
+        } catch (Exception $e) {
+            die('Erreur: ' . $e->getMessage());
+        }
     }
-    catch (Exception $e){
-        die('Erreur: '.$e->getMessage());
+
+
+    function Supprimerpromoproduit($id)
+    {
+        $db = config::getConnexion();
+        $sql = "UPDATE produit set promo=0 where refe=$id";
+
+        try {
+            $req = $db->prepare($sql);
+            $req->execute();
+        } catch (Exception $e) {
+            die('Erreur: ' . $e->getMessage());
+        }
     }
+    function Nombrepart()
+    {
+        $db = config::getConnexion();
+        $sql = "select * from participation";
+
+        try {
+            $req = $db->prepare($sql);
+            $req->execute();
+        } catch (Exception $e) {
+            die('Erreur: ' . $e->getMessage());
+        }
     }
+function afficherevenement()
+{
+    $sql = "SElECT * From evenement";
+    $db = config::getConnexion();
+    try {
+        $liste = $db->query($sql);
+        return $liste;
+    } catch (Exception $e) {
+        die('Erreur: ' . $e->getMessage());
+    }
+
 }
-
-
+}
 ?>

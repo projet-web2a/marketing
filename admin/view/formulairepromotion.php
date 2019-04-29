@@ -50,6 +50,9 @@ $listeproduit=$var->afficherProduit();
     <link rel="stylesheet" href="../css/custom.css">
     <!-- Favicon-->
     <link rel="shortcut icon" href="../img/favicon.ico">
+    <!-- select-->
+    <link rel="stylesheet" href="../css/select.style.css">
+
     <!-- Tweaks for older IEs--><!--[if lt IE 9]>
     <script src="../https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="../https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
@@ -187,27 +190,17 @@ $listeproduit=$var->afficherProduit();
                 </ul>
             </div>
                 <!-- Form Panel    -->
-                <div class="col-lg-6 bg-white">
-                    <div class="form d-flex align-items-center">
-                        <div class="content">
-                            <h1>Les promotions</h1>
-                            <h2>Promotions à ajouter</h2>
+            <div class="col-lg-6">
+                <div class="card">
+                    <div class="card-close">
+                        <div class="dropdown">
+                            <div aria-labelledby="closeCard1" class="dropdown-menu dropdown-menu-right has-shadow"><a href="#" class="dropdown-item remove"> <i class="fa fa-times"></i>Close</a><a href="#" class="dropdown-item edit"> <i class="fa fa-gear"></i>Edit</a></div>
 
-                            <form method="post"  action="ajouterpromotion.php"   id="enregisterpromotion"  >
+                            <h1>Promotion à ajouter</h1>
 
-                                <div class="form-group">
-                                    <label for="Datedebut" class="label-material">Date début </label>
-
-                                    <input id="Datedebut" type="date" name="Datedebut" required data-msg="Entrez la date de début de l'événement" class="input-material">
-                                </div>
-                                <div class="form-group">
-                                    <label for="Datefin" class="label-material">Date fin </label>
-
-                                    <input id="Datefin" type="date" name="Datefin"  required data-msg="Entrez la date de fin de l'événement" class="input-material">
-                                </div>
-
-                                <div class="form-group">
-                                    <select name="IdProduit">
+                            <form method="post"   action="ajouterpromotion.php"   id="enregisterpromotion"  >
+                                <div class="styled">
+                                    <select name="IdProduit" >
 
                                         <?PHP
                                         foreach ($listeproduit as $id)
@@ -215,29 +208,36 @@ $listeproduit=$var->afficherProduit();
 
 
 
-                                        ?>
-                                        <option value="<?PHP echo $id['refe']; ?>">
-                                            <?PHP echo $id['refe']; ?>
-                                            <img src="<?PHP echo $id['url']; ?> " alt=" " weight="10px" height="10px">
-                                        </option>
-                                        <?php
+                                            ?>
+                                            <option value="<?PHP echo $id['refe']; ?>">
+                                                <?PHP echo $id['refe']; ?>
+
+
+                                            </option>
+                                            <?php
                                         }
                                         ?>
                                     </select>
-                                    <label for="Refe" class="label-material">Référence</label>
 
-                                </div>
-
-                                <div class="form-group">
-
-                                    <label for="Categorie" class="label-material">Catégorie </label>
-
-                                    <input id="Categorie" onclick="compar()" type="text" name="Categorie" required data-msg="Entrez la description de l'événement" class="input-material">
+                                    <label id="label" for="Refe"  class="form-control-label"><strong>L'article</strong></label>
+                                    <div class="customer-img">
+                                        <img src="../img/<?PHP echo $id['url']; ?>" alt=" " weight="50px" height="200px">
+                                    </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="Taux" class="label-material">Taux </label>
+                                    <label id="label1" for="Datedebut" class="form-control-label"><strong>Date début</strong></label>
 
-                                    <input id="Taux" type="number" onclick="compar()" name="Taux" required data-msg="Entrez la description de l'événement" class="input-material">
+                                    <input id="Datedebut" type="date" name="Datedebut" required data-msg="Entrez la date de début de l'événement" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label id="label2" for="Datefin" class="form-control-label"><strong>Date fin</strong></label>
+
+                                    <input id="Datefin" type="date" name="Datefin"  required data-msg="Entrez la date de fin de l'événement" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label id="label3" for="Taux" class="form-control-label"><strong>Taux</strong></label>
+
+                                    <input id="Taux" type="number" step="0.01" onclick="compar()" name="Taux" required data-msg="Entrez la description de l'événement" class="form-control">
 
                                 </div>
 
@@ -285,6 +285,14 @@ $listeproduit=$var->afficherProduit();
 
     }
 </script>
+<script>
+    document.getElementById('label').style.color='blue';
+    document.getElementById('label1').style.color='blue';
+    document.getElementById('label2').style.color='blue';
+    document.getElementById('label3').style.color='blue';
+
+</script>
+
 <script src="../js/dateevenement.js"></script>
 <script src="../vendor/jquery/jquery.min.js"></script>
 <script src="../vendor/popper.js/umd/popper.min.js"> </script>

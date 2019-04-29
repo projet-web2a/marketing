@@ -80,7 +80,7 @@ if (empty($_SESSION['l']) && empty($_SESSION['p']))
                                             </tr>
                                             <tr>
                                                 <td>Image</td>
-                                                <td><input  class="input-material" type="file" name="image"  value="<?PHP echo $image ?>"></td>
+                                                <td><input  class="input-material" type="text" name="image"  value="<?PHP echo $image ?>"></td>
                                             </tr>
 
                                             <tr>

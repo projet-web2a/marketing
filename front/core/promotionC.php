@@ -1,7 +1,6 @@
 <?PHP
-require_once 'C:/xampp/htdocs/monprojet/front/config.php';
+include_once 'C:/xampp/htdocs/monprojet/front/config.php';
 
-include "produit.php";
 class PromotionC
 {
     function afficherPromotion()
@@ -20,7 +19,7 @@ class PromotionC
 
     function recuperenouvPromotion()
     {$time=time();
-        $sql = "SElECT * From promotion where lu=0 and datefin<$time";
+        $sql = "SElECT * From promotion where lu=0 and datefin>$time";
         $db = config::getConnexion();
         try {
             $liste = $db->query($sql);
@@ -70,17 +69,7 @@ class PromotionC
         }
     }
 
-    function afficherProduit()
-    {
-        $sql = "SElECT * From produit";
-        $db = config::getConnexion();
-        try {
-            $liste = $db->query($sql);
-            return $liste;
-        } catch (Exception $e) {
-            die('Erreur: ' . $e->getMessage());
-        }
-    }
+
     function supprimerPromotion($id)
     {
         $db = config::getConnexion();
@@ -106,22 +95,22 @@ class PromotionC
         try{
             $req=$db->prepare($sql);
 
-           // $id_promotion = $promotion->getId();
+            // $id_promotion = $promotion->getId();
             $datedebut = $promotion->getDatedebut();
             $datefin = $promotion->getDatefin();
             $idProduit = $promotion->getRefe();
             $categorie = $promotion->getCategorie();
             $taux = $promotion->getTaux();
-    $prixfinal = $promotion->getPrix();
+            $prixfinal = $promotion->getPrix();
 
             $datas = array( ':datedebut'=>$datedebut, ':datefin'=>$datefin,':idProduit'=>$idProduit,':categorie'=>$categorie,':taux'=>$taux,':prixfinal'=>$prixfinal );
-         //   $req->bindValue(':id_promotion', $id_promotion);
+            //   $req->bindValue(':id_promotion', $id_promotion);
             $req->bindValue(':datedebut', $datedebut);
             $req->bindValue(':datefin', $datefin);
             $req->bindValue(':idProduit', $idProduit);
             $req->bindValue(':categorie', $categorie);
             $req->bindValue(':taux', $taux);
-           $req->bindValue(':prixfinal', $prixfinal);
+            $req->bindValue(':prixfinal', $prixfinal);
 
 
 
@@ -138,11 +127,27 @@ class PromotionC
         }
 
     }
+    function recupererProduit($id){
+        $db = config::getConnexion();
+        echo "la vie en rose1";
+
+        $sql="SELECT * from produit where refe=$id";
+        echo "la vie en rose2";
+
+
+        try{
+            $liste=$db->query($sql);
+            return $liste;
+        }
+        catch (Exception $e){
+            die('Erreur: '.$e->getMessage());
+        }
+    }
     function recupererPromotion($id){
         $db = config::getConnexion();
         echo "la vie en rose1";
 
-        $sql="SELECT * from promotion where id_promotion=$id";
+        $sql="SELECT * from promotion where idProduit=$id";
         echo "la vie en rose2";
 
 
@@ -165,34 +170,14 @@ class PromotionC
             die('Erreur: '.$e->getMessage());
         }
     }
-  function calculerPrix($id)
-  {
-      $db = config::getConnexion();
-  $sql="SELECT prix from produit where refe=$id";
-
-      try{
-          $ancienprix=$db->query($sql);
-        //  echo"nnn";
-          $ancienprix->execute();
-          $ancienprix1=$ancienprix->fetch();
-          return $ancienprix1;
-      }
-      catch (Exception $e){
-          die('Erreur: '.$e->getMessage());
-      }
-
-
-
-
-  }
-    function recupererUrl($id)
+    function calculerPrix($id)
     {
         $db = config::getConnexion();
-        $sql="SELECT * from produit where refe=$id";
-        echo"nnn";
+        $sql="SELECT prix from produit where refe=$id";
+
         try{
             $ancienprix=$db->query($sql);
-             echo"nnn";
+            //  echo"nnn";
             $ancienprix->execute();
             $ancienprix1=$ancienprix->fetch();
             return $ancienprix1;
@@ -205,27 +190,34 @@ class PromotionC
 
 
     }
-    function recupererProduit($id)
+    function recupererUrl($id)
     {
         $db = config::getConnexion();
-        $sql = "SELECT * from produit";
-        echo "nnn";
-        try {
-            $liste = $db->query($sql);
-            return $liste;
-
-
-        } catch (Exception $e) {
-            die('Erreur: ' . $e->getMessage());
+        $sql="SELECT * from produit where refe=$id";
+        echo"nnn";
+        try{
+            $ancienprix=$db->query($sql);
+            echo"nnn";
+            $ancienprix->execute();
+            $ancienprix1=$ancienprix->fetch();
+            return $ancienprix1;
         }
+        catch (Exception $e){
+            die('Erreur: '.$e->getMessage());
+        }
+
+
+
+
     }
+
     public function trier($par)
     {        $db = config::getConnexion();
 
         $sql="SELECT * FROM promotion order by $par ";
 
-try{
-    echo' gg';
+        try{
+            echo' gg';
             $result=$db->query($sql);
 
             return $result;
@@ -235,7 +227,18 @@ try{
             die('Erreur: '.$e->getMessage());
         }
     }
+    function afficherProduit()
+    {
+        $sql = "SElECT * From produit where promo<>0";
+        $db = config::getConnexion();
+        try {
+            $liste = $db->query($sql);
 
+            return $liste;
+        } catch (Exception $e) {
+            die('Erreur: ' . $e->getMessage());
+        }
+    }
     function Ajouternotifcation($refe,$url,$prixfinal,$prix,$lu)
     {
         $database=config::GetConnexion();

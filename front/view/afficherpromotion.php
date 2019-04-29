@@ -298,7 +298,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     $promotionC=new PromotionC();
     $listePromotion=$promotionC->afficherPromotion();
     $listeproduitC=$promotionC->afficherProduit();
-
     //var_dump($listeEmployes->fetchAll());
     ?>
 
@@ -308,55 +307,76 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         ?>
     <?PHP foreach ($listeproduitC as $r) {
             ?>
-            <section class="banner-bottom-wthreelayouts py-lg-5 py-3">
-                <div class="container-fluid">
-
-                    <div class="inner-sec-shop px-lg-4 px-3">
-
-
-                        <div class="row">
-                            <div class="col-lg-3 customer-main">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <div class="customer-img">
-                                            <img src="<?PHP echo $r['url']; ?> " alt=" " weight="50px" height="200px">
-
-
-                                        </div>
-                                        <div class="customer-info text-left py-lg-4 py-2">
-                                            <h4><?PHP echo $row['datefin']; ?></h4>
-
-
-                                            <div class="row  pt-3 mt-3 team-social border-top">
-                                                <h5 class="col-md-4 text-left">Contact</h5>
-                                                <ul class="col-md-8 d-flex justify-content-right social-icons">
-
-
-                                                    <li>
-                                                        <a href="#">
-                                                            <i class="fab fa-facebook-f"></i>
-                                                        </a>
-                                                    </li>
-                                                    <li class="mx-3">
-                                                        <a href="#">
-                                                            <i class="fab fa-twitter"></i>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#">
-                                                            <i class="fab fa-google-plus-g"></i>
-                                                        </a>
-                                                    </li>
-
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
+            <div class="col-md-3 product-men women_two">
+                <div class="product-googles-info googles">
+                    <div class="men-pro-item">
+                        <div class="men-thumb-item">
+                            <img src="../images/<?PHP echo $r['url']; ?> " class="img-fluid" alt=""  weight="100px" height="500px">
+                                <div class="men-cart-pro">
+                                <div class="inner-men-cart-pro">
+                                    <a href="promotionseul.php?maction=<?PHP echo $r['refe']?>" class="link-product-add-cart">Quick View</a>
                                 </div>
                             </div>
                         </div>
-            </section>
+                        <div class="item-info-product">
+                            <div class="info-product-price">
+                                <div class="grid_meta">
+                                    <div class="product_price">
+                                        <h4> <a href="promotionseul.php""><?php echo $r['mar']?></a></h4>
+                                        <div class="grid-price mt-2"><span class="money"><?PHP echo $row['prixfinal'] ?></span>
+                                            <span class="money">DT</span></div>
+                                        <strike><?PHP echo $r['prix'] ?></strike>
+                                        <span class="money">DT</span></div>
+                                    <div class="product_price">Date fin de la promotion <br><?PHP echo $row['datefin'] ?>
+                                </div>
+                                    <ul class="stars">
+                                        <li>
+                                            <a href="#">
+                                                <i class="fa fa-star" aria-hidden="true"></i>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <i class="fa fa-star" aria-hidden="true"></i>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <i class="fa fa-star" aria-hidden="true"></i>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <i class="fa fa-star" aria-hidden="true"></i>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <i class="fa fa-star-half-o" aria-hidden="true"></i>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="googles single-item hvr-outline-out">
+                                    <form action="#" method="post">
+                                        <input type="hidden" name="cmd" value="_cart">
+                                        <input type="hidden" name="add" value="1">
+                                        <input type="hidden" name="googles_item" value="Farenheit">
+                                        <input type="hidden" name="amount" value="575.00">
+                                        <button type="submit" class="googles-cart pgoogles-cart">
+                                            <i class="fas fa-cart-plus"></i>
+                                        </button>
 
+
+                                    </form>
+
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
             <?php
         }

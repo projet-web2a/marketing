@@ -7,16 +7,17 @@
  */
 
 class produit
-{   function afficherProduit()
 {
-    $sql = "SElECT * From produit WHERE promo=!0";
-    $db = config::getConnexion();
-    try {
-        $liste = $db->query($sql);
-        return $liste;
-    } catch (Exception $e) {
-        die('Erreur: ' . $e->getMessage());
-    }
-}
+    function afficherProduit()
+    {
+        $sql = "SElECT * From produit where promo<>0";
+        $db = config::getConnexion();
+        try {
+            $liste = $db->query($sql);
 
+            return $liste;
+        } catch (Exception $e) {
+            die('Erreur: ' . $e->getMessage());
+        }
+    }
 }
