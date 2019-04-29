@@ -1,5 +1,6 @@
 <?PHP
 require_once 'C:/xampp/htdocs/monprojet/front/config.php';
+
 include "produit.php";
 class PromotionC
 {
@@ -69,7 +70,17 @@ class PromotionC
         }
     }
 
-
+    function afficherProduit()
+    {
+        $sql = "SElECT * From produit";
+        $db = config::getConnexion();
+        try {
+            $liste = $db->query($sql);
+            return $liste;
+        } catch (Exception $e) {
+            die('Erreur: ' . $e->getMessage());
+        }
+    }
     function supprimerPromotion($id)
     {
         $db = config::getConnexion();

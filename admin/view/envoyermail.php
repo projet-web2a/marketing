@@ -7,37 +7,25 @@
  */
 include "../entite/promotion.php";
 include "../core/promotionC.php";
-
 if (isset($_POST['envoyer'])){
   $to=$_POST['destination'] ;
 //$to='hane.bhar@esprit.tn';
 $sujet='test';
-//$text=$_POST['description'];
+$text=$_POST['description'];
+$entete='From : user \n';
+$entete .="Reply-to: user \n";
+$entete .= "MIME-Version: 1.0 \n";
+$entete .="Content-type: multipart/mixed;";
+    $image=$_FILES['image']['name'];
+
+move_uploaded_file($_FILES['file']['tmp_name'],$image);
 //$header='From :henebhar@gmail.com';
-    $text=' <!DOCTYPE html>
-
-<html>
-      <head>
-            <meta charset="utf-8">
-             <title>Welcome to my world </title>
-              <link rel="stylesheet" href="../css/carte.css">
-      </head>
-
-      <body>
-      	<div id="carte">
-
-<h1>Voilà mon CV</h1>
-           <p>Bonjour,je me présente:Hane Bhar une étudiante responsable et engagée à ESPRIT en IT.<br>
-           J\'ai 20 ans douée dans la communication avec les autres et la prise en charge des responsabilités.</p>
-
-      </body>
 
 
-</html>';
-mail($to,$sujet,$text);
+    mail($to,$sujet,$text,$entete);
 echo $text;
   /*$evenementC->modifierEvenement($evenement,$_POST['id_ini']);
     echo $_POST['id_ini'];
-   */ header('Location: espacevenement.php');
+   */// header('Location: espacevenement.php');
 
 }

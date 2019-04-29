@@ -75,7 +75,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <?PHP
 
                 require_once "core/promotionC.php";
-                require_once "core/produit.php";
+               require_once "core/produit.php";
                 $promotionC=new PromotionC();
                 $listepromotion=$promotionC->recuperenouvPromotion();
                 $nbr_notif=$listepromotion->rowCount();

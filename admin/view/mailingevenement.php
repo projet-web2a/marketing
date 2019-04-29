@@ -64,7 +64,7 @@ if (empty($_SESSION['l']) && empty($_SESSION['p']))
 
                                     // $id_evenement=$row['id_evenement'];
                                     $description=$row['description'];
-
+                                    $image=$row['image'];
                                     ?>
                                     <form method="POST" action="envoyermail.php">
                                         <table>
@@ -77,6 +77,10 @@ if (empty($_SESSION['l']) && empty($_SESSION['p']))
                                             <tr>
                                             <td>Description</td>
                                             <td><input  class="input-material" type="text" name="description"  value="<?PHP echo $description ?>"></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Image</td>
+                                                <td><input  class="input-material" type="file" name="image"  value="<?PHP echo $image ?>"></td>
                                             </tr>
 
                                             <tr>
