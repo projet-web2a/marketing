@@ -289,7 +289,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             </div>
         </nav>
     </header>
-    <h3 class="tittle-w3layouts text-center my-lg-4 my-3">Nos événements </h3>
+    <h3 class="tittle-w3layouts text-center my-lg-4 my-3"> </h3>
     <?PHP
     include "../core/promotionC.php";
 
@@ -301,16 +301,25 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     //var_dump($listeEmployes->fetchAll());
     ?>
 
-    <?PHP
-    foreach($listePromotion as $row){
+    <div class="container-fluid">
+        <!--/slide-->
+        <div class="slider-img mid-sec mt-lg-5 mt-2 px-lg-5 px-3">
+            <!--//banner-sec-->
 
-        ?>
-    <?PHP foreach ($listeproduitC as $r) {
-            ?>
             <div class="col-md-3 product-men women_two">
                 <div class="product-googles-info googles">
-                    <div class="men-pro-item">
-                        <div class="men-thumb-item">
+                    <?PHP
+                    foreach($listePromotion as $row){
+
+                    ?>
+                    <?PHP foreach ($listeproduitC as $r) {
+                    ?>
+                    <div class="item">
+                        <div class="gd-box-info text-center">
+                            <div class="product-men women_two bot-gd">
+                                <div class="product-googles-info slide-img googles">
+                                    <div class="men-pro-item">
+                                        <div class="men-thumb-item">
                             <img src="../images/<?PHP echo $r['url']; ?> " class="img-fluid" alt=""  weight="100px" height="500px">
                                 <div class="men-cart-pro">
                                 <div class="inner-men-cart-pro">
@@ -374,18 +383,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             </div>
                             <div class="clearfix"></div>
                         </div>
+
+                        <?php
+                        }?>
+                        <?php
+                        }?>
                     </div>
                 </div>
             </div>
 
-            <?php
-        }
-        ?>
 
-        <?php
-    }
-    ?>
-
+                </div>
     <!--jQuery-->
     <script src="../js/jquery-2.2.3.min.js"></script>
     <!-- newsletter modal -->

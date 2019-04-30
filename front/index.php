@@ -94,6 +94,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <?PHP
                         foreach ($listepromotion as $row){
                         ?>
+                        <?PHP foreach ($listeproduitC as $r) {
+                        ?>
 
                         <li><a rel="nofollow" href="#" class="dropdown-item">
 
@@ -102,8 +104,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                                 class="fa fa-twitter bg-blue"></i><?PHP echo $row['datedebut']; ?></div>
                                     <div class="notification-content"><i
                                                 class="fa fa-twitter bg-blue"></i><?PHP echo $row['datefin']; ?></div>
-                                    <?PHP foreach ($listeproduitC as $r) {
-                                    ?>
 
                                     <div class="customer-img">
 
@@ -111,9 +111,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 
                                     </div>
-                                        <?php
-                                    }
-                                    ?>
+
 
                                     <td><form method="GET" action="view/marquercommelu.php" >
 
@@ -125,6 +123,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                         <!--  <div class="notification-content"><i class="fa fa-twitter bg-blue"></i><img src="banner4.jpg" alt=" " weight="50px" height="200px"></div>
       -->
                                 </div>
+                                <?php
+                                }
+                                ?>
                                 <?PHP
                                 }
                                 ?>

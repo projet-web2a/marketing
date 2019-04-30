@@ -1,21 +1,19 @@
 <?PHP
 session_start();
-if (empty($_SESSION['l']) && empty($_SESSION['p'])  )
+if (empty($_SESSION['l']) && empty($_SESSION['p']))
 {
 
-    $login='0000';
+    header('Location: authentificationmarketing.php');
 
-    $role='visiteur';
-
-}
-else
-{
-    $login=$_SESSION['l'];
-    $role=$_SESSION['r'];
+    /*  echo 'Votre login est <b>'.$_SESSION['l'].'</b> <br>et votre mot de passe est <b>'.$_SESSION['p'].
+        '</b><br>Votre role est : '.$_SESSION['r'].' <br/> Identifiant de la session est :'.session_id().'</br>';
+    echo '<a href="./logout.php">Cliquer pour se déconnecter</a>';
+    */
 }
 ?>
 <!DOCTYPE html>
-<html>
+
+<html lang="en">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -57,7 +55,7 @@ else
                 <div class="navbar-holder d-flex align-items-center justify-content-between">
                     <!-- Navbar Header-->
                     <div class="navbar-header">
-                        <!-- Navbar Brand --><a href="../index.html" class="navbar-brand d-none d-sm-inline-block">
+                        <!-- Navbar Brand --><a href="../index.php" class="navbar-brand d-none d-sm-inline-block">
                             <div class="brand-text d-none d-lg-inline-block"> EyeZone</div>
                             <div class="brand-text d-none d-sm-inline-block d-lg-none"><strong>BD</strong></div></a>
                         <!-- Toggle Button--><a id="toggle-btn" href="#" class="menu-btn active"><span></span><span></span><span></span></a>
@@ -121,7 +119,7 @@ else
                             </ul>
                         </li>
                         <!-- Logout    -->
-                        <li class="nav-item"><a href="authentificationmarketing.php" class="nav-link logout"> <span class="d-none d-sm-inline">Logout</span><i class="fa fa-sign-out"></i></a></li>
+                        <li class="nav-item"><a href="../login.html" class="nav-link logout"> <span class="d-none d-sm-inline">Logout</span><i class="fa fa-sign-out"></i></a></li>
                     </ul>
                 </div>
             </div>
@@ -134,15 +132,15 @@ else
             <div class="sidebar-header d-flex align-items-center">
                 <div class="avatar"><img src="../img/avatar-1.jpg" alt="..." class="img-fluid rounded-circle"></div>
                 <div class="title">
-                    <h1 class="h4"><?php echo $login ?></h1>
-                    <p> <?php echo $role ?></p>
+                    <h1 class="h4">Wafa Rabeh</h1>
+                    <p>Manager</p>
                 </div>
             </div>
             <!-- Sidebar Navidation Menus--><span class="heading">Main</span>
             <ul class="list-unstyled">
                 <li><a href="../index.php"> <i class="icon-home"></i>Home </a></li>
                 <li><a href="../tables.html"> <i class="icon-grid"></i>Produits </a></li>
-                <li><a href="../charts.html"> <i class="fa fa-bar-chart"></i>Commandes </a></li><li><a href="../forms.html"> <i class="icon-padnote"></i>Clients </a></li>
+                <li><a href="../charts.html"> <i class="fa fa-bar-chart"></i>Commandes </a></li>                <li><a href="forms.html"> <i class="icon-padnote"></i>Clients </a></li>
                 <li><li class="active"><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="icon-interface-windows"></i>Marketing</a>
                     <ul id="exampledropdownDropdown" class="collapse list-unstyled ">
                         <li><a href="espacevenement.php">Evenement</a></li>
@@ -173,99 +171,185 @@ else
                     <li class="breadcrumb-item active">Marketing</li>
                 </ul>
             </div>
-                            <?PHP
-                            include "../entite/evenement.php";
-                            include "../core/evenementC.php";
+                <?php
+
+require_once  '../config.php';
+$db=config::getConnexion();
+
+$req1= $db->query("select sum(nbrvue) as nb, nom_evenement as nom from evenement GROUP by nom_evenement "
+);
+$req1->execute();
+$liste= $req1->fetchALL();
+/*$req2= $db->query("SELECT sum(quantiteCommandee) as nb FROM lignecommande   " );
+$nb = $req2->fetch();
+*/
+$dataPoints = array();
+foreach ($liste as $row) {
+    $nom= $row['nom'];
+    $nb=$row['nb'];
+
+    $dataPoints[] = array('label' => $nom, 'y' => $nb );
+}
+?>
+<!DOCTYPE HTML>
+<html>
+<head>
+    <script>
+        window.onload = function() {
 
 
-                            $evenement1C=new EvenementC();
-                            $listeEvenement=$evenement1C->afficherEvenement();
+            var chart = new CanvasJS.Chart("chartContainer", {
+                animationEnabled: true,
+                title: {
+                    text: "Nombre de vue de chaque evenement"
+                },
+                subtitles: [{
+                    text: "janvier-juin"
+                }],
+                data: [{
+                    type: "pie",
+                    yValueFormatString: "#,##0.00\"%\"",
+                    indexLabel: "{label} ({y})",
+                    dataPoints: <?php echo json_encode($dataPoints, JSON_NUMERIC_CHECK); ?>
+                }]
+            });
+            chart.render();
 
+        }
+    </script>
 
-                            //var_dump($listeEmployes->fetchAll());
-                            ?>
-                            <table border="1" >
+<body>
 
-                                <tr>
+<body>
+<div class="page-container">
+    <!--/content-inner-->
+    <div class="left-content">
+        <div class="mother-grid-inner">
+            <!--header start here-->
+            <div class="header-main">
+            </div>
 
-                                    <td>Nom de l'événement</td>
-                                    <td>Date de début</td>
-                                    <td>Date de fin</td>
-                                    <td>Nombre de participant</td>
-                                    <td>Nombre de vue</td>
-                                    <td>Image</td>
-                                    <td>Description</td>
-                                    <td>Action</td>
-                                </tr>
-                                <?PHP
-                                foreach($listeEvenement as $row){
-                                    ?>
-                                    <tr>
+        </div>
 
-                                        <td><?PHP echo $row['nom_evenement']; ?></td>
-                                        <td><?PHP echo $row['datedebut']; ?></td>
-                                        <td><?PHP echo $row['datefin']; ?></td>
-                                        <td><?PHP echo $row['nbrparticipant']; ?></td>
-                                        <td><?PHP echo $row['nbrvue']; ?></td>
-                                        <td><?PHP echo $row['image']; ?></td>
-                                        <td><?PHP echo $row['description']; ?></td>
+        <!--heder end here-->
 
+        <div class="agile-grids">
+            <div id="chartContainer" style="height: 370px; width: 83%; margin-left: 20px" align="center"></div>
+            <script src="../https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+        </div>
 
-                                        <td><form method="GET" action="modifierevenement.php">
-                                                <input type="submit" name="modifier" value="modifier" class="btn btn-primary">
-                                                <input type="hidden" value="<?PHP echo $row['id_evenement']; ?> " name="id_evenement">
-                                            </form>
+        <!-- script-for sticky-nav -->
+        <script>
+            $(document).ready(function() {
+                var navoffeset=$(".header-main").offset().top;
+                $(window).scroll(function(){
+                    var scrollpos=$(window).scrollTop();
+                    if(scrollpos >=navoffeset){
+                        $(".header-main").addClass("fixed");
+                    }else{
+                        $(".header-main").removeClass("fixed");
+                    }
+                });
 
-                                        <td>
-                                        <form method="POST" action="supprimerevenement.php" >
-                                                <input type="submit" name="supprimer" value="supprimer" class="btn btn-danger">
-                                                <input type="hidden" value="<?PHP echo $row['id_evenement']; ?> " name="id_evenement" >
-                                            </form>
+            });
+        </script>
+        <!-- /script-for sticky-nav -->
+        <div class="inner-block">
 
-                                        <td>
-                                            <form method="POST" action="mailingevenement.php" >
-                                                <input type="submit" name="envoyer" value="envoyer" class="btn btn-danger">
-
-                                                <input type="hidden" value="<?PHP echo $row['id_evenement']; ?> " name="id_evenement" >
-                                            </form>
-
-                                            <!-- <td><form method="GET" action="chercherevenement.php">
-                                                     <input type="submit" name="chercher" value="chercher" class="btn btn-primary">
-                                                     <input type="hidden" value="" name="datedebut">
-                                                 </form>
-                                 -->        </tr>
-
-                                    <?PHP
-                                }
-
-                                ?>
-
-                            </table>
-                            <center>
-                              <a href="formulairevenement.php" class="btn btn-primary"> ajouter</a>
-                                <a href="../index.php" class="btn btn-primary"> retour</a>
-                                <a href="statistiqueevent.php" class="btn btn-primary"> Statistiques des événements</a>
-
-
-                            </center>
-
-                        </div>
-                    </div>
-                </div>
-
-    <div class="copyrights text-center">
-        <p>
-            <!-- Please do not remove the backlink to us unless you support further theme's development at https://bootstrapious.com/donate. It is part of the license conditions. Thank you for understanding :)-->
-        </p>
+        </div>
+        <!--inner block end here-->
+        <!--copy rights start here-->
+        <div class="copyrights">
+            <p>© 2016 Pooled . All Rights Reserved | Design by  <a href="http://w3layouts.com/" target="_blank">W3layouts</a> </p>
+        </div>
+        <!--COPY rights end here-->
     </div>
-<!-- JavaScript files-->
-<script src="../vendor/jquery/jquery.min.js"></script>
-<script src="../vendor/popper.js/umd/popper.min.js"> </script>
-<script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
-<script src="../vendor/jquery.cookie/jquery.cookie.js"> </script>
-<script src="../vendor/chart.js/Chart.min.js"></script>
-<script src="../vendor/jquery-validation/jquery.validate.min.js"></script>
-<!-- Main File-->
-<script src="../js/front.js"></script>
+</div>
+<a href="espacevenement.php" class="btn btn-primary"> retour</a>
+
+<!--//content-inner-->
+<!--/sidebar-menu-->
+<div class="sidebar-menu">
+</div>
+<div class="clearfix"></div>
+        </div>
+        <script>
+            var toggle = true;
+
+            $(".sidebar-icon").click(function() {
+                if (toggle)
+                {
+                    $(".page-container").addClass("sidebar-collapsed").removeClass("sidebar-collapsed-back");
+                    $("#menu span").css({"position":"absolute"});
+                }
+                else
+                {
+                    $(".page-container").removeClass("sidebar-collapsed").addClass("sidebar-collapsed-back");
+                    setTimeout(function() {
+                        $("#menu span").css({"position":"relative"});
+                    }, 400);
+                }
+
+                toggle = !toggle;
+            });
+        </script>
+        <!--js -->
+        <script src="js/jquery.nicescroll.js"></script>
+        <script src="js/scripts.js"></script>
+        <!-- Bootstrap Core JavaScript -->
+        <script src="js/bootstrap.min.js"></script>
+        <!-- /Bootstrap Core JavaScript -->
+        <!-- calendar -->
+        <script type="text/javascript" src="js/monthly.js"></script>
+        <script type="text/javascript">
+            $(window).load( function() {
+
+                $('#mycalendar').monthly({
+                    mode: 'event',
+
+                });
+
+                $('#mycalendar2').monthly({
+                    mode: 'picker',
+                    target: '#mytarget',
+                    setWidth: '250px',
+                    startHidden: true,
+                    showTrigger: '#mytarget',
+                    stylePast: true,
+                    disablePast: true
+                });
+
+                switch(window.location.protocol) {
+                    case 'http:':
+                    case 'https:':
+                        // running on a server, should be good.
+                        break;
+                    case 'file:':
+                        alert('Just a heads-up, events will not work when run locally.');
+                }
+
+            });
+
+        </script>
+        <!-- //calendar -->
+
+        <div class="copyrights text-center">
+            <p>
+                <!-- Please do not remove the backlink to us unless you support further theme's development at https://bootstrapious.com/donate. It is part of the license conditions. Thank you for understanding :)-->
+            </p>
+        </div>
+
+        <!-- JavaScript files-->
+        <script src="../vendor/jquery/jquery.min.js"></script>
+        <script src="../vendor/popper.js/umd/popper.min.js"> </script>
+        <script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
+        <script src="../vendor/jquery.cookie/jquery.cookie.js"> </script>
+        <script src="../vendor/chart.js/Chart.min.js"></script>
+        <script src="../vendor/jquery-validation/jquery.validate.min.js"></script>
+        <!-- Main File-->
+        <script src="../js/front.js"></script>
+
+<div id="chartContainer" style="height: 370px; width: 100%;"></div>
+<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 </body>
 </html>

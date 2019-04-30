@@ -249,7 +249,7 @@ foreach($req3 as $row) {
 
         <div class="agile-grids">
             <div id="chartContainer" style="height: 370px; width: 83%; margin-left: 20px" align="center"></div>
-            <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+            <script src="../https://canvasjs.com/assets/script/canvasjs.min.js"></script>
         </div>
 
         <!-- script-for sticky-nav -->

@@ -134,6 +134,7 @@ class EvenementC
             die('Erreur: '.$e->getMessage());
         }
     }
+
 }
 
 ?>

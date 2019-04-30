@@ -1,5 +1,5 @@
 <?PHP
-include_once "../config.php";
+require_once 'C:/xampp/htdocs/monprojet/admin/config.php';
 class PromotionC
 {
     function afficherPromotion()
@@ -294,5 +294,6 @@ function afficherevenement()
     }
 
 }
+
 }
 ?>

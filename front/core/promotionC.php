@@ -1,5 +1,5 @@
 <?PHP
-include_once 'C:/xampp/htdocs/monprojet/front/config.php';
+require_once 'C:/xampp/htdocs/monprojet/front/config.php';
 
 class PromotionC
 {

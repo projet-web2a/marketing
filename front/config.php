@@ -26,14 +26,12 @@ class config {
     private static $instance = NULL;
 
     public static function getConnexion() {
-        define ('HOST','localhost');
-        define('DB_NAME','agenceimmobiliere');
-        define('USER','root');
-        define('PASS','');
+
         if (!isset(self::$instance)) {
             //$pdo_options[PDO::ATTR_ERRMODE] = PDO::ERRMODE_EXCEPTION;
             try{
-                self::$instance = new    PDO("mysql:host=" . "localhost" . ";dbname=" . "siteweb", "root", PASS );
+                //self::$instance = new    PDO("mysql:host=" . "localhost" . ";dbname=" . "siteweb", "root", PASS );
+                self::$instance = new PDO('mysql:host=localhost;dbname=siteweb', 'root', '');
 
                 self::$instance->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                 //ou bien comme ceci pour afficher les erreurs

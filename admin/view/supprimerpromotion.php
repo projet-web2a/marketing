@@ -21,7 +21,7 @@ else {
         echo "la vie est belle";
         $promotionC->supprimerPromotion($_POST['id_promotion']);
         header('Location: espacepromotion.php');
-        Supprimerpromoproduit($_POST['id_promotion']);
+        $promotionC->Supprimerpromoproduit($_POST['id_promotion']);
     }
 
 }
