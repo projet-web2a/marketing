@@ -19,9 +19,14 @@ else {
 
     if (isset($_POST['id_promotion'])) {
         echo "la vie est belle";
-        $promotionC->supprimerPromotion($_POST['id_promotion']);
-        header('Location: espacepromotion.php');
-        $promotionC->Supprimerpromoproduit($_POST['id_promotion']);
+        $promotion=$promotionC->recupererPromotion($_POST['id_promotion']);
+        foreach ($promotion as $row) {
+            $promotionC->Supprimerpromoproduit($row['idProduit']);
+        }
+            $promotionC->supprimerPromotion($_POST['id_promotion']);
+            echo $_POST['id_promotion'];
+
+       // header('Location: espacepromotion.php');
     }
 
 }

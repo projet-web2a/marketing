@@ -16,6 +16,21 @@ if (empty($_SESSION['l']) && empty($_SESSION['p']))
 
 $login=$_SESSION['l'];
 $role=$_SESSION['r'];
+
+include_once "../core/evenementC.php";
+include_once "../core/promotionC.php";
+$promotionC=new PromotionC();
+$evenement=new EvenementC();
+$listepromotion=$promotionC->afficherPromotion();
+//$nbr=$listepromotion->rowcount();
+$listenbr=$evenement->totaleparticipant();
+$nbr=0;
+foreach ($listenbr as $ro)
+{
+    $nbr=$ro['nbrparticipant']+$nbr;
+}
+$listevenement=$promotionC->afficherEvenement();
+
 ?>
 
 <!DOCTYPE html>
@@ -71,28 +86,22 @@ $role=$_SESSION['r'];
                         <!-- Search-->
                         <li class="nav-item d-flex align-items-center"><a id="search" href="#"><i class="icon-search"></i></a></li>
                         <!-- Notifications-->
-                        <li class="nav-item dropdown"> <a id="notifications" rel="nofollow" data-target="#" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link"><i class="fa fa-bell-o"></i><span class="badge bg-red badge-corner">12</span></a>
+                        <li class="nav-item dropdown"> <a id="notifications" rel="nofollow" data-target="#" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link"><i class="fa fa-bell-o"></i><span class="badge bg-red badge-corner"><?php echo $nbr ?></span></a>
                             <ul aria-labelledby="notifications" class="dropdown-menu">
-                                <li><a rel="nofollow" href="#" class="dropdown-item">
-                                        <div class="notification">
-                                            <div class="notification-content"><i class="fa fa-envelope bg-green"></i>You have 6 new messages </div>
-                                            <div class="notification-time"><small>4 minutes ago</small></div>
-                                        </div></a></li>
-                                <li><a rel="nofollow" href="#" class="dropdown-item">
-                                        <div class="notification">
-                                            <div class="notification-content"><i class="fa fa-twitter bg-blue"></i>You have 2 followers</div>
-                                            <div class="notification-time"><small>4 minutes ago</small></div>
-                                        </div></a></li>
-                                <li><a rel="nofollow" href="#" class="dropdown-item">
-                                        <div class="notification">
-                                            <div class="notification-content"><i class="fa fa-upload bg-orange"></i>Server Rebooted</div>
-                                            <div class="notification-time"><small>4 minutes ago</small></div>
-                                        </div></a></li>
-                                <li><a rel="nofollow" href="#" class="dropdown-item">
-                                        <div class="notification">
-                                            <div class="notification-content"><i class="fa fa-twitter bg-blue"></i>You have 2 followers</div>
-                                            <div class="notification-time"><small>10 minutes ago</small></div>
-                                        </div></a></li>
+                                <?php foreach ($listevenement as $row){
+
+
+                                    ?>
+                                    <li><a rel="nofollow" href="#" class="dropdown-item">
+
+                                            <div class="notification">
+                                                <div class="notification-content"><i class="fa fa-envelope bg-green"></i><?php echo $row["nom_evenement"]?></div>
+                                                <div class="notification-time"><small><?PHP echo $row["nbrparticipant"] ?></small></div>
+                                            </div></a></li>
+                                    <?php
+                                }
+                                ?>
+
                                 <li><a rel="nofollow" href="#" class="dropdown-item all-notifications text-center"> <strong>view all notifications                                            </strong></a></li>
                             </ul>
                         </li>
@@ -178,36 +187,38 @@ $role=$_SESSION['r'];
                 </ul>
             </div>
                 <!-- Form Panel    -->
-                <div class="col-lg-6 bg-white">
-                    <div class="form d-flex align-items-center">
-                        <div class="content">
-                            <h1>Les événements</h1>
-                            <h2>Evenement à ajouter</h2>
+            <div class="col-lg-6">
+                <div class="card">
+                    <div class="card-close">
+                        <div class="dropdown">
+                            <div aria-labelledby="closeCard1" class="dropdown-menu dropdown-menu-right has-shadow"><a href="#" class="dropdown-item remove"> <i class="fa fa-times"></i>Close</a><a href="#" class="dropdown-item edit"> <i class="fa fa-gear"></i>Edit</a></div>
+
+                            <h1>Evenement à ajouter</h1>
                             <form method="post"  action="ajouterevenement.php" onclick="compar()"  id="enregisterevenement" >
                                 <div class="form-group">
-                                    <label for="Nom" class="label-material">Nom de l'événement</label>
+                                    <label for="Nom" id="label" class="form-control-label"><strong>Nom de l'événement</strong></label>
 
                                     <input id="Nom" type="text" name="Nom" required data-msg="Entrez le nom de l'événement" class="input-material">
                                 </div>
                                 <div class="form-group">
-                                    <label for="Datedebut" class="label-material">Date début </label>
+                                    <label for="Datedebut"  id="label" class="form-control-label"><strong>Date début</strong></label>
 
                                     <input id="Datedebut" type="date" name="Datedebut" required data-msg="Entrez la date de début de l'événement" class="input-material">
 
                                 </div>
                                 <div class="form-group">
-                                    <label for="Datefin" class="label-material">Date fin </label>
+                                    <label for="Datefin"  id="label" class="form-control-label"><strong>Date fin</strong></label>
 
                                     <input id="Datefin" type="date" name="Datefin" required data-msg="Entrez la date de fin de l'événement" class="input-material">
                                 </div>
                                 <div class="form-group">
-                                    <label for="Image" class="label-material">Image </label>
+                                    <label for="Image"  id="label" class="form-control-label"><strong>Image</strong> </label>
 
                                     <input id="Image" type="file" name="Image"  required class="input-material">
 
                                 </div>
                                 <div class="form-group">
-                                    <label for="Description" class="label-material">Description</label>
+                                    <label for="Description" id="label" class="form-control-label"><strong>Description</strong></label>
 
                                     <input id="Description" type="text" name="Description" required data-msg="Entrez la description de l'événement" class="input-material">
                                 </div>

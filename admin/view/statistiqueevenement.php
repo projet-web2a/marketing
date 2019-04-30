@@ -182,7 +182,7 @@ include "../core/evenementC.php";
 
             $req1= $db->query("SELECT MAX(nbrvue)  as nb1 , nom_evenement as nom FROM evenement ");
 foreach($req1 as $row) {
-    $nb1=$row['nb1']; // 42
+    $nb1=$row['nb1']; //
     $nom= $row['nom']; // la valeur du champ email
 }
 

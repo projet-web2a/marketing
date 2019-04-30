@@ -25,6 +25,21 @@ if (empty($_SESSION['l']) && empty($_SESSION['p']))
 $var=new PromotionC();
 $listeproduit=$var->afficherProduit();
 
+include_once "../core/evenementC.php";
+include_once "../core/promotionC.php";
+$promotionC=new PromotionC();
+$evenement=new EvenementC();
+$listepromotion=$promotionC->afficherPromotion();
+//$nbr=$listepromotion->rowcount();
+$listenbr=$evenement->totaleparticipant();
+$nbr=0;
+foreach ($listenbr as $ro)
+{
+    $nbr=$ro['nbrparticipant']+$nbr;
+}
+$listevenement=$promotionC->afficherEvenement();
+
+
 ?>
 
 <!DOCTYPE html>
@@ -83,28 +98,22 @@ $listeproduit=$var->afficherProduit();
                         <!-- Search-->
                         <li class="nav-item d-flex align-items-center"><a id="search" href="#"><i class="icon-search"></i></a></li>
                         <!-- Notifications-->
-                        <li class="nav-item dropdown"> <a id="notifications" rel="nofollow" data-target="#" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link"><i class="fa fa-bell-o"></i><span class="badge bg-red badge-corner">12</span></a>
+                        <li class="nav-item dropdown"> <a id="notifications" rel="nofollow" data-target="#" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link"><i class="fa fa-bell-o"></i><span class="badge bg-red badge-corner"><?php echo $nbr ?></span></a>
                             <ul aria-labelledby="notifications" class="dropdown-menu">
-                                <li><a rel="nofollow" href="#" class="dropdown-item">
-                                        <div class="notification">
-                                            <div class="notification-content"><i class="fa fa-envelope bg-green"></i>You have 6 new messages </div>
-                                            <div class="notification-time"><small>4 minutes ago</small></div>
-                                        </div></a></li>
-                                <li><a rel="nofollow" href="#" class="dropdown-item">
-                                        <div class="notification">
-                                            <div class="notification-content"><i class="fa fa-twitter bg-blue"></i>You have 2 followers</div>
-                                            <div class="notification-time"><small>4 minutes ago</small></div>
-                                        </div></a></li>
-                                <li><a rel="nofollow" href="#" class="dropdown-item">
-                                        <div class="notification">
-                                            <div class="notification-content"><i class="fa fa-upload bg-orange"></i>Server Rebooted</div>
-                                            <div class="notification-time"><small>4 minutes ago</small></div>
-                                        </div></a></li>
-                                <li><a rel="nofollow" href="#" class="dropdown-item">
-                                        <div class="notification">
-                                            <div class="notification-content"><i class="fa fa-twitter bg-blue"></i>You have 2 followers</div>
-                                            <div class="notification-time"><small>10 minutes ago</small></div>
-                                        </div></a></li>
+                                <?php foreach ($listevenement as $row){
+
+
+                                    ?>
+                                    <li><a rel="nofollow" href="#" class="dropdown-item">
+
+                                            <div class="notification">
+                                                <div class="notification-content"><i class="fa fa-envelope bg-green"></i><?php echo $row["nom_evenement"]?></div>
+                                                <div class="notification-time"><small><?PHP echo $row["nbrparticipant"] ?></small></div>
+                                            </div></a></li>
+                                    <?php
+                                }
+                                ?>
+
                                 <li><a rel="nofollow" href="#" class="dropdown-item all-notifications text-center"> <strong>view all notifications                                            </strong></a></li>
                             </ul>
                         </li>
@@ -225,17 +234,17 @@ $listeproduit=$var->afficherProduit();
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label id="label1" for="Datedebut" class="form-control-label"><strong>Date début</strong></label>
+                                    <label id="label" for="Datedebut" class="form-control-label"><strong>Date début</strong></label>
 
                                     <input id="Datedebut" type="date" name="Datedebut" required data-msg="Entrez la date de début de l'événement" class="form-control">
                                 </div>
                                 <div class="form-group">
-                                    <label id="label2" for="Datefin" class="form-control-label"><strong>Date fin</strong></label>
+                                    <label id="label" for="Datefin" class="form-control-label"><strong>Date fin</strong></label>
 
                                     <input id="Datefin" type="date" name="Datefin"  required data-msg="Entrez la date de fin de l'événement" class="form-control">
                                 </div>
                                 <div class="form-group">
-                                    <label id="label3" for="Taux" class="form-control-label"><strong>Taux</strong></label>
+                                    <label id="label" for="Taux" class="form-control-label"><strong>Taux</strong></label>
 
                                     <input id="Taux" type="number" step="0.01" onclick="compar()" name="Taux" required data-msg="Entrez la description de l'événement" class="form-control">
 
@@ -253,8 +262,7 @@ $listeproduit=$var->afficherProduit();
                             <!-- <a id="login"  class="btn btn-primary">Login</a>-->
 
                             <!-- This should be submit button but I replaced it with <a> for demo purposes-->
-                            <a href="#" class="forgot-pass">Forgot Password?</a><br><small>Do not have an account? </small><a href="register.php" class="signup">Signup</a>
-                        </div>
+                           </div>
 
                     </div>
                 </div>
@@ -284,13 +292,6 @@ $listeproduit=$var->afficherProduit();
 
 
     }
-</script>
-<script>
-    document.getElementById('label').style.color='blue';
-    document.getElementById('label1').style.color='blue';
-    document.getElementById('label2').style.color='blue';
-    document.getElementById('label3').style.color='blue';
-
 </script>
 
 <script src="../js/dateevenement.js"></script>

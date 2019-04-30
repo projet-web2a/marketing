@@ -14,6 +14,20 @@ else
     $login=$_SESSION['l'];
     $role=$_SESSION['r'];
 }
+include_once "../core/evenementC.php";
+include_once "../core/promotionC.php";
+$promotionC=new PromotionC();
+$evenement=new EvenementC();
+$listepromotion=$promotionC->afficherPromotion();
+//$nbr=$listepromotion->rowcount();
+$listenbr=$evenement->totaleparticipant();
+$nbr=0;
+foreach ($listenbr as $ro)
+{
+    $nbr=$ro['nbrparticipant']+$nbr;
+}
+$listevenement=$promotionC->afficherEvenement();
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -68,28 +82,22 @@ else
                         <!-- Search-->
                         <li class="nav-item d-flex align-items-center"><a id="search" href="#"><i class="icon-search"></i></a></li>
                         <!-- Notifications-->
-                        <li class="nav-item dropdown"> <a id="notifications" rel="nofollow" data-target="#" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link"><i class="fa fa-bell-o"></i><span class="badge bg-red badge-corner">12</span></a>
+                        <li class="nav-item dropdown"> <a id="notifications" rel="nofollow" data-target="#" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link"><i class="fa fa-bell-o"></i><span class="badge bg-red badge-corner"><?php echo $nbr ?></span></a>
                             <ul aria-labelledby="notifications" class="dropdown-menu">
-                                <li><a rel="nofollow" href="#" class="dropdown-item">
-                                        <div class="notification">
-                                            <div class="notification-content"><i class="fa fa-envelope bg-green"></i>You have 6 new messages </div>
-                                            <div class="notification-time"><small>4 minutes ago</small></div>
-                                        </div></a></li>
-                                <li><a rel="nofollow" href="#" class="dropdown-item">
-                                        <div class="notification">
-                                            <div class="notification-content"><i class="fa fa-twitter bg-blue"></i>You have 2 followers</div>
-                                            <div class="notification-time"><small>4 minutes ago</small></div>
-                                        </div></a></li>
-                                <li><a rel="nofollow" href="#" class="dropdown-item">
-                                        <div class="notification">
-                                            <div class="notification-content"><i class="fa fa-upload bg-orange"></i>Server Rebooted</div>
-                                            <div class="notification-time"><small>4 minutes ago</small></div>
-                                        </div></a></li>
-                                <li><a rel="nofollow" href="#" class="dropdown-item">
-                                        <div class="notification">
-                                            <div class="notification-content"><i class="fa fa-twitter bg-blue"></i>You have 2 followers</div>
-                                            <div class="notification-time"><small>10 minutes ago</small></div>
-                                        </div></a></li>
+                                <?php foreach ($listevenement as $row){
+
+
+                                    ?>
+                                    <li><a rel="nofollow" href="#" class="dropdown-item">
+
+                                            <div class="notification">
+                                                <div class="notification-content"><i class="fa fa-envelope bg-green"></i><?php echo $row["nom_evenement"]?></div>
+                                                <div class="notification-time"><small><?PHP echo $row["nbrparticipant"] ?></small></div>
+                                            </div></a></li>
+                                    <?php
+                                }
+                                ?>
+
                                 <li><a rel="nofollow" href="#" class="dropdown-item all-notifications text-center"> <strong>view all notifications                                            </strong></a></li>
                             </ul>
                         </li>
@@ -171,12 +179,11 @@ else
             <div class="breadcrumb-holder container-fluid">
                 <ul class="breadcrumb">
                     <li class="breadcrumb-item"><a href="../index.php">Home</a></li>
-                    <li class="breadcrumb-item active">Marketing</li>
+                    <li class="breadcrumb-item active">Promotion</li>
                 </ul>
             </div>
                             <?PHP
                             include "../entite/promotion.php";
-                            include "../core/promotionC.php";
 
                             $promotion1C=new PromotionC();
                             $listePromotion1=$promotion1C->afficherPromotion();
@@ -201,7 +208,7 @@ else
                                     <td>Date debut de la promotion</td>
                                     <td>Date fin de la promotion</td>
                                     <td>La réference</td>
-                                    <td>La catégorie</td>
+                                    <td>La description</td>
                                     <td>Le taux</td>
                                     <td>Le prixfinal</td>
 
@@ -257,7 +264,7 @@ else
       <br>
        <br>
        <form method="GET" action="chercherpromotion.php">
-            <input type="text" class="btn btn-default dropdown-toggle" name="chercher" placeholder="Tapez pour cherche">
+            <input type="text" class="btn btn-default dropdown-toggle" name="chercher" placeholder="Tapez le taux ">
             <input type="hidden" class="btn-danger"  value="chercher">
     </form>
 

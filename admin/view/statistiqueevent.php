@@ -10,6 +10,29 @@ if (empty($_SESSION['l']) && empty($_SESSION['p']))
     echo '<a href="./logout.php">Cliquer pour se déconnecter</a>';
     */
 }
+else {
+    $num = 1;
+    if (isset($_GET['maction'])) {
+        $maction = $_GET['maction'];
+    }
+    if ($maction == 'stat') {
+        $num = $_GET['num'];
+    }
+
+    include_once "../core/evenementC.php";
+    include_once "../core/promotionC.php";
+    $promotionC = new PromotionC();
+    $evenement = new EvenementC();
+    $listepromotion = $promotionC->afficherPromotion();
+//$nbr=$listepromotion->rowcount();
+    $listenbr = $evenement->totaleparticipant();
+    $nbr = 0;
+    foreach ($listenbr as $ro) {
+        $nbr = $ro['nbrparticipant'] + $nbr;
+    }
+    $listevenement = $promotionC->afficherEvenement();
+
+}
 ?>
 <!DOCTYPE html>
 
@@ -65,28 +88,22 @@ if (empty($_SESSION['l']) && empty($_SESSION['p']))
                         <!-- Search-->
                         <li class="nav-item d-flex align-items-center"><a id="search" href="#"><i class="icon-search"></i></a></li>
                         <!-- Notifications-->
-                        <li class="nav-item dropdown"> <a id="notifications" rel="nofollow" data-target="#" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link"><i class="fa fa-bell-o"></i><span class="badge bg-red badge-corner">12</span></a>
+                        <li class="nav-item dropdown"> <a id="notifications" rel="nofollow" data-target="#" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link"><i class="fa fa-bell-o"></i><span class="badge bg-red badge-corner"><?php echo $nbr ?></span></a>
                             <ul aria-labelledby="notifications" class="dropdown-menu">
-                                <li><a rel="nofollow" href="#" class="dropdown-item">
-                                        <div class="notification">
-                                            <div class="notification-content"><i class="fa fa-envelope bg-green"></i>You have 6 new messages </div>
-                                            <div class="notification-time"><small>4 minutes ago</small></div>
-                                        </div></a></li>
-                                <li><a rel="nofollow" href="#" class="dropdown-item">
-                                        <div class="notification">
-                                            <div class="notification-content"><i class="fa fa-twitter bg-blue"></i>You have 2 followers</div>
-                                            <div class="notification-time"><small>4 minutes ago</small></div>
-                                        </div></a></li>
-                                <li><a rel="nofollow" href="#" class="dropdown-item">
-                                        <div class="notification">
-                                            <div class="notification-content"><i class="fa fa-upload bg-orange"></i>Server Rebooted</div>
-                                            <div class="notification-time"><small>4 minutes ago</small></div>
-                                        </div></a></li>
-                                <li><a rel="nofollow" href="#" class="dropdown-item">
-                                        <div class="notification">
-                                            <div class="notification-content"><i class="fa fa-twitter bg-blue"></i>You have 2 followers</div>
-                                            <div class="notification-time"><small>10 minutes ago</small></div>
-                                        </div></a></li>
+                                <?php foreach ($listevenement as $row){
+
+
+                                    ?>
+                                    <li><a rel="nofollow" href="#" class="dropdown-item">
+
+                                            <div class="notification">
+                                                <div class="notification-content"><i class="fa fa-envelope bg-green"></i><?php echo $row["nom_evenement"]?></div>
+                                                <div class="notification-time"><small><?PHP echo $row["nbrparticipant"] ?></small></div>
+                                            </div></a></li>
+                                    <?php
+                                }
+                                ?>
+
                                 <li><a rel="nofollow" href="#" class="dropdown-item all-notifications text-center"> <strong>view all notifications                                            </strong></a></li>
                             </ul>
                         </li>
@@ -136,6 +153,7 @@ if (empty($_SESSION['l']) && empty($_SESSION['p']))
                     <p>Manager</p>
                 </div>
             </div>
+
             <!-- Sidebar Navidation Menus--><span class="heading">Main</span>
             <ul class="list-unstyled">
                 <li><a href="../index.php"> <i class="icon-home"></i>Home </a></li>
@@ -172,55 +190,22 @@ if (empty($_SESSION['l']) && empty($_SESSION['p']))
                 </ul>
             </div>
                 <?php
+                if ($num==1)
+                    require_once'statistiquevue.php';
+                else if ($num==2)
+                    require_once'statistiqueparticipant.php';
 
-require_once  '../config.php';
-$db=config::getConnexion();
-
-$req1= $db->query("select sum(nbrvue) as nb, nom_evenement as nom from evenement GROUP by nom_evenement "
-);
-$req1->execute();
-$liste= $req1->fetchALL();
-/*$req2= $db->query("SELECT sum(quantiteCommandee) as nb FROM lignecommande   " );
-$nb = $req2->fetch();
-*/
-$dataPoints = array();
-foreach ($liste as $row) {
-    $nom= $row['nom'];
-    $nb=$row['nb'];
-
-    $dataPoints[] = array('label' => $nom, 'y' => $nb );
-}
-?>
-<!DOCTYPE HTML>
-<html>
-<head>
-    <script>
-        window.onload = function() {
+                ?>
 
 
-            var chart = new CanvasJS.Chart("chartContainer", {
-                animationEnabled: true,
-                title: {
-                    text: "Nombre de vue de chaque evenement"
-                },
-                subtitles: [{
-                    text: "janvier-juin"
-                }],
-                data: [{
-                    type: "pie",
-                    yValueFormatString: "#,##0.00\"%\"",
-                    indexLabel: "{label} ({y})",
-                    dataPoints: <?php echo json_encode($dataPoints, JSON_NUMERIC_CHECK); ?>
-                }]
-            });
-            chart.render();
+<a class="btn btn-dark dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    STAT  </a>
 
-        }
-    </script>
+<div class="dropdown-menu " aria-labelledby="dropdownMenuLink">
+    <a class="dropdown-item " href="statistiqueevent.php?maction=stat&num=1">Nombre de vue</a>
+    <a class="dropdown-item " href="statistiqueevent.php?maction=stat&num=2">Nombre de participant </a>
+</div>
 
-<body>
-
-<body>
 <div class="page-container">
     <!--/content-inner-->
     <div class="left-content">

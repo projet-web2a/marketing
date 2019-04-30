@@ -16,7 +16,6 @@ class PromotionC
 
     function ajouterPromotion($promotion)
     {
-        echo "la vie en rose";
         $db = config::getConnexion();
         $sql = "INSERT INTO promotion(id_promotion,datedebut,datefin,idProduit,categorie,taux,prixfinal,lu) VALUES(:id_promotion,:datedebut,:datefin,:idProduit,:categorie,:taux,:prixfinal,:lu)";
 
@@ -41,7 +40,6 @@ class PromotionC
             $req->bindValue(':lu', $lu);
 
 
-            echo "la vie en rose";
 
             $req->execute();
             // header('Location: ../espacemarketing.php');
@@ -113,10 +111,8 @@ class PromotionC
     function recupererPromotion($id)
     {
         $db = config::getConnexion();
-        echo "la vie en rose1";
 
         $sql = "SELECT * from promotion where id_promotion=$id";
-        echo "la vie en rose2";
 
 
         try {
@@ -130,7 +126,7 @@ class PromotionC
     function rechercherListepromotion($par)
     {
         $db = config::getConnexion();
-        $sql = "SELECT * from promotion where categorie='$par'";
+        $sql = "SELECT * from promotion where taux=$par";
         try {
             $liste = $db->query($sql);
             return $liste;
@@ -230,7 +226,6 @@ class PromotionC
         $req->bindValue(':prix', $prix);
         $req->bindValue(':lu', $lu);
 
-        echo "la vie en rose";
 
         $req->execute();
     }
@@ -259,10 +254,10 @@ class PromotionC
 
 
     function Supprimerpromoproduit($id)
-    {
+    {$zero=0;
         $db = config::getConnexion();
-        $sql = "UPDATE produit set promo=0 where refe=$id";
-
+        $sql = "UPDATE produit set promo=$zero where refe=$id";
+echo "bb";
         try {
             $req = $db->prepare($sql);
             $req->execute();
@@ -294,6 +289,16 @@ function afficherevenement()
     }
 
 }
-
+function recuperermailclient()
+{
+    $sql = "SElECT email From client";
+    $db = config::getConnexion();
+    try {
+        $liste = $db->query($sql);
+        return $liste;
+    } catch (Exception $e) {
+        die('Erreur: ' . $e->getMessage());
+    }
+}
 }
 ?>

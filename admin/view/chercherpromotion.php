@@ -138,7 +138,7 @@ echo '<a href="./logout.php">Cliquer pour se déconnecter</a>';
             </div>
             <!-- Sidebar Navidation Menus--><span class="heading">Main</span>
             <ul class="list-unstyled">
-                <li><a href="../index.html"> <i class="icon-home"></i>Home </a></li>
+                <li><a href="../index.php"> <i class="icon-home"></i>Home </a></li>
                 <li><a href="../tables.html"> <i class="icon-grid"></i>Produits </a></li>
                 <li><a href="../charts.html"> <i class="fa fa-bar-chart"></i>Commandes </a></li><li><a href="../forms.html"> <i class="icon-padnote"></i>Clients </a></li>
                 <li><li class="active"><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="icon-interface-windows"></i>Marketing</a>
@@ -167,7 +167,7 @@ echo '<a href="./logout.php">Cliquer pour se déconnecter</a>';
             <!-- Breadcrumb-->
             <div class="breadcrumb-holder container-fluid">
                 <ul class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="../index.html">Home</a></li>
+                    <li class="breadcrumb-item"><a href="../index.php">Home</a></li>
                     <li class="breadcrumb-item active">Marketing</li>
                 </ul>
             </div>

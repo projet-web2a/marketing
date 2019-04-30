@@ -16,8 +16,15 @@ else
 include_once "core/evenementC.php";
 include_once "core/promotionC.php";
 $promotionC=new PromotionC();
+$evenement=new EvenementC();
 $listepromotion=$promotionC->afficherPromotion();
-$nbr=$listepromotion->rowcount();
+//$nbr=$listepromotion->rowcount();
+$listenbr=$evenement->totaleparticipant();
+$nbr=0;
+foreach ($listenbr as $ro)
+{
+    $nbr=$ro['nbrparticipant']+$nbr;
+}
 $listevenement=$promotionC->afficherEvenement();
 
 ?>
@@ -143,7 +150,7 @@ $listevenement=$promotionC->afficherEvenement();
             </div>
             <!-- Sidebar Navidation Menus--><span class="heading">Main</span>
             <ul class="list-unstyled">
-                <li class="active"><a href="index.html"> <em class="icon-home"></em>  Home </a></li>
+                <li class="active"><a href="index.php"> <em class="icon-home"></em>  Home </a></li>
                 <li><a href="tables.html"> <i class="icon-grid"></i>Produits </a></li>
                 <li><a href="charts.html"> <i class="fa fa-bar-chart"></i>Commandes </a></li>
                 <li><a href="forms.html"> <i class="icon-padnote"></i>Clients </a></li>

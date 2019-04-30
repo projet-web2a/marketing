@@ -134,6 +134,20 @@ class EvenementC
             die('Erreur: '.$e->getMessage());
         }
     }
+    function totaleparticipant()
+    {
+
+        $sql="SELECT nbrparticipant from evenement ";
+        $db = config::getConnexion();
+        try{
+            $liste=$db->query($sql);
+           // echo"nnn";
+            return $liste;
+        }
+        catch (Exception $e){
+            die('Erreur: '.$e->getMessage());
+        }
+    }
 
 }
 

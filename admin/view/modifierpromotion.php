@@ -1,4 +1,5 @@
 <?php
+session_start();
 if (empty($_SESSION['l']) && empty($_SESSION['p']))
 {
 
@@ -9,13 +10,32 @@ if (empty($_SESSION['l']) && empty($_SESSION['p']))
     echo '<a href="./logout.php">Cliquer pour se déconnecter</a>';
     */
 }
+$login=$_SESSION['l'];
+$role=$_SESSION['r'];
+
+include "../core/promotionC.php";
+
+include_once "../core/evenementC.php";
+$promotionC=new PromotionC();
+$evenement=new EvenementC();
+$listepromotion=$promotionC->afficherPromotion();
+//$nbr=$listepromotion->rowcount();
+$listenbr=$evenement->totaleparticipant();
+$nbr=0;
+foreach ($listenbr as $ro)
+{
+    $nbr=$ro['nbrparticipant']+$nbr;
+}
+$listevenement=$promotionC->afficherEvenement();
+
 
 ?>
-<HTML>
+<!DOCTYPE html>
+<html>
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>EyeZone Login</title>
+    <title>EyeZone | Marketing</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="robots" content="all,follow">
@@ -33,30 +53,144 @@ if (empty($_SESSION['l']) && empty($_SESSION['p']))
     <link rel="stylesheet" href="../css/custom.css">
     <!-- Favicon-->
     <link rel="shortcut icon" href="../img/favicon.ico">
+    <!-- select-->
+    <link rel="stylesheet" href="../css/select.style.css">
+
     <!-- Tweaks for older IEs--><!--[if lt IE 9]>
     <script src="../https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="../https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
 </head>
 <body>
-<div class="page login-page">
-    <div class="container d-flex align-items-center">
-        <div class="form-holder has-shadow">
-            <div class="row">
-                <!-- Logo & Information Panel-->
-                <div class="col-lg-6">
-                    <div class="info d-flex align-items-center">
-                        <div class="content">
-                            <div class="logo">
-                                <h1>EyeZone</h1>
-                            </div>
-                            <p>Welcome to the Admin Dashbord</p>
+<div class="page">
+    <!-- Main Navbar-->
+    <header class="header">
+        <nav class="navbar">
+            <!-- Search Box-->
+            <div class="search-box">
+                <button class="dismiss"><i class="icon-close"></i></button>
+                <form id="searchForm" action="#" role="search">
+                    <input type="search" placeholder="What are you looking for..." class="form-control">
+                </form>
+            </div>
+            <div class="container-fluid">
+                <div class="navbar-holder d-flex align-items-center justify-content-between">
+                    <!-- Navbar Header-->
+                    <div class="navbar-header">
+                        <!-- Navbar Brand --><a href="../index.php" class="navbar-brand d-none d-sm-inline-block">
+                            <div class="brand-text d-none d-lg-inline-block"> EyeZone</div>
+                            <div class="brand-text d-none d-sm-inline-block d-lg-none"><strong>BD</strong></div></a>
+                        <!-- Toggle Button--><a id="toggle-btn" href="#" class="menu-btn active"><span></span><span></span><span></span></a>
+                    </div>
+                    <!-- Navbar Menu -->
+                    <ul class="nav-menu list-unstyled d-flex flex-md-row align-items-md-center">
+                        <!-- Search-->
+                        <li class="nav-item d-flex align-items-center"><a id="search" href="#"><i class="icon-search"></i></a></li>
+                        <!-- Notifications-->
+                        <li class="nav-item dropdown"> <a id="notifications" rel="nofollow" data-target="#" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link"><i class="fa fa-bell-o"></i><span class="badge bg-red badge-corner"><?php echo $nbr ?></span></a>
+                            <ul aria-labelledby="notifications" class="dropdown-menu">
+                                <?php foreach ($listevenement as $row){
+
+
+                                    ?>
+                                    <li><a rel="nofollow" href="#" class="dropdown-item">
+
+                                            <div class="notification">
+                                                <div class="notification-content"><i class="fa fa-envelope bg-green"></i><?php echo $row["nom_evenement"]?></div>
+                                                <div class="notification-time"><small><?PHP echo $row["nbrparticipant"] ?></small></div>
+                                            </div></a></li>
+                                    <?php
+                                }
+                                ?>
+
+                                <li><a rel="nofollow" href="#" class="dropdown-item all-notifications text-center"> <strong>view all notifications                                            </strong></a></li>
+                            </ul>
+                        </li>
+                        <!-- Messages                        -->
+                        <li class="nav-item dropdown"> <a id="messages" rel="nofollow" data-target="#" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link"><i class="fa fa-envelope-o"></i><span class="badge bg-orange badge-corner">10</span></a>
+                            <ul aria-labelledby="notifications" class="dropdown-menu">
+                                <li><a rel="nofollow" href="#" class="dropdown-item d-flex">
+                                        <div class="msg-profile"> <img src="../img/avatar-1.jpg" alt="..." class="img-fluid rounded-circle"></div>
+                                        <div class="msg-body">
+                                            <h3 class="h5">Jason Doe</h3><span>Sent You Message</span>
+                                        </div></a></li>
+                                <li><a rel="nofollow" href="#" class="dropdown-item d-flex">
+                                        <div class="msg-profile"> <img src="../img/avatar-2.jpg" alt="..." class="img-fluid rounded-circle"></div>
+                                        <div class="msg-body">
+                                            <h3 class="h5">Frank Williams</h3><span>Sent You Message</span>
+                                        </div></a></li>
+                                <li><a rel="nofollow" href="#" class="dropdown-item d-flex">
+                                        <div class="msg-profile"> <img src="../img/avatar-3.jpg" alt="..." class="img-fluid rounded-circle"></div>
+                                        <div class="msg-body">
+                                            <h3 class="h5">Ashley Wood</h3><span>Sent You Message</span>
+                                        </div></a></li>
+                                <li><a rel="nofollow" href="#" class="dropdown-item all-notifications text-center"> <strong>Read all messages   </strong></a></li>
+                            </ul>
+                        </li>
+                        <!-- Languages dropdown    -->
+                        <li class="nav-item dropdown"><a id="languages" rel="nofollow" data-target="#" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link language dropdown-toggle"><img src="img/flags/16/GB.png" alt="English"><span class="d-none d-sm-inline-block">English</span></a>
+                            <ul aria-labelledby="languages" class="dropdown-menu">
+                                <li><a rel="nofollow" href="#" class="dropdown-item"> <img src="../img/flags/16/DE.png" alt="English" class="mr-2">German</a></li>
+                                <li><a rel="nofollow" href="#" class="dropdown-item"> <img src="../img/flags/16/FR.png" alt="English" class="mr-2">French                                         </a></li>
+                            </ul>
+                        </li>
+                        <!-- Logout    -->
+                        <li class="nav-item"><a href="../login.html" class="nav-link logout"> <span class="d-none d-sm-inline">Logout</span><i class="fa fa-sign-out"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="page-content d-flex align-items-stretch">
+        <!-- Side Navbar -->
+        <nav class="side-navbar">
+            <!-- Sidebar Header-->
+            <div class="sidebar-header d-flex align-items-center">
+                <div class="avatar"><img src="../img/avatar-1.jpg" alt="..." class="img-fluid rounded-circle"></div>
+                <div class="title">
+                    <h1 class="h4"><?php echo $login?></h1>
+                    <p><?php echo $role ?></p>
+                </div>
+            </div>
+            <!-- Sidebar Navidation Menus--><span class="heading">Main</span>
+            <ul class="list-unstyled">
+                <li><a href="../index.php"> <i class="icon-home"></i>Home </a></li>
+                <li><a href="../tables.html"> <i class="icon-grid"></i>Produits </a></li>
+                <li><a href="../charts.html"> <i class="fa fa-bar-chart"></i>Commandes </a></li>                <li><a href="../forms.html"> <i class="icon-padnote"></i>Clients </a></li>
+                <li><li class="active"><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="icon-interface-windows"></i>Marketing</a>
+                    <ul id="exampledropdownDropdown" class="collapse list-unstyled ">
+                        <li><a href="espacevenement.php">Evenement</a></li>
+                        <li><a href="espacepromotion.php">Promotion</a></li>
+                    </ul>
+                </li>
+                <li><a href="../login.html"> <i class="icon-interface-windows"></i>Livraisons </a></li>
+                <li><a href="../login.html"> <i class="icon-interface-windows"></i>Service aprés vente </a></li>
+            </ul><span class="heading">Extras</span>
+            <ul class="list-unstyled">
+                <li> <a href="#"> <i class="icon-flask"></i>Demo </a></li>
+                <li> <a href="#"> <i class="icon-screen"></i>Demo </a></li>
+                <li> <a href="#"> <i class="icon-mail"></i>Demo </a></li>
+                <li> <a href="#"> <i class="icon-picture"></i>Demo </a></li>
+            </ul>
+        </nav>
+        <div class="content-inner">
+            <!-- Page Header-->
+            <header class="page-header">
+                <div class="container-fluid">
+                    <h2 class="no-margin-bottom">Marketing</h2>
+                </div>
+            </header>
+            <!-- Breadcrumb-->
+            <div class="breadcrumb-holder container-fluid">
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="../index.php">Home</a></li>
+                    <li class="breadcrumb-item active">Marketing</li>
+                </ul>
+            </div>
                             <?PHP
                             include "../entite/promotion.php";
-                            include "../core/promotionC.php";
                             if (isset($_GET['id_promotion'])){
 
                                 $promotionC=new PromotionC();
-                                echo' la vie en rose';
                                 $result=$promotionC->recupererPromotion($_GET['id_promotion']);
                                 foreach($result as $row){
 
@@ -69,28 +203,27 @@ if (empty($_SESSION['l']) && empty($_SESSION['p']))
                                     ?>
                                     <form method="POST" action="modifierpromo.php" onclick="compar()">
                                         <table>
-                                            <caption>Modifier Promotion</caption>
 
 
                                             <tr>
-                                                <td>Date debut</td>
-                                                <td><input type="date" name="datedebut" value="<?PHP echo $datedebut ?>"></td>
+                                                <td><strong>Date debut</strong></td>
+                                                <td><input type="date" id="label"  class="form-control-label" name="datedebut" value="<?PHP echo $datedebut ?>"></td>
                                             </tr>
                                             <tr>
-                                                <td>Date fin</td>
-                                                <td><input type="date" name="datefin" value="<?PHP echo $datefin ?>"></td>
+                                                <td><strong>Date fin</strong></td>
+                                                <td><input type="date" name="datefin" id="label"  class="form-control-label" value="<?PHP echo $datefin ?>"></td>
                                             </tr>
                                             <tr>
-                                                <td>Réference</td>
-                                                <td><input type="text" name="idProduit" value="<?PHP echo $idProduit ?>"></td>
+                                                <td><strong>Réference</strong></td>
+                                                <td><input type="text" name="idProduit" id="label"  class="form-control-label" value="<?PHP echo $idProduit ?>"></td>
                                             </tr>
                                             <tr>
-                                            <td>Catégorie</td>
-                                            <td><input type="text" name="categorie" value="<?PHP echo $categorie ?>"></td>
+                                            <td><strong>Description</strong></td>
+                                            <td><input type="text" name="categorie" id="label"  class="form-control-label" value="<?PHP echo $categorie ?>"></td>
                                             </tr>
                                             <tr>
-                                            <td>Taux</td>
-                                            <td><input type="number" step="0.01" name="taux" value="<?PHP echo $taux ?>"></td>
+                                            <td><strong>Taux</strong></td>
+                                            <td><input type="number" step="0.01" name="taux" id="label"  class="form-control-label" value="<?PHP echo $taux ?>"></td>
                                             </tr>
 
                                             <tr>
@@ -113,15 +246,13 @@ if (empty($_SESSION['l']) && empty($_SESSION['p']))
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
+
     <div class="copyrights text-center">
         <p>
             <!-- Please do not remove the backlink to us unless you support further theme's development at https://bootstrapious.com/donate. It is part of the license conditions. Thank you for understanding :)-->
         </p>
     </div>
-</div>
+
 
 <!-- JavaScript files-->
 <script>

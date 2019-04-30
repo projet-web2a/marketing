@@ -318,7 +318,7 @@ $listeEvenement=$evenement1C->afficherEvenement();
                                 <div class="card">
                                     <div class="card-body">
                                         <div class="customer-img">
-                                            <img src="<?PHP echo $row['image']; ?> " alt=" " weight="50px" height="200px">
+                                            <img src="../images/<?PHP echo $row['image']; ?> " alt=" " weight="100px" height="200px">
 
 
                                         </div>

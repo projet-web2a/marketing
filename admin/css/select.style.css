@@ -1,7 +1,7 @@
 div.styled select {
     width: 115% /* this percentage effectively extends the drop down button out of view */;
-    background-color: indigo /* this hides the select's background making any styling visible from the div */;
-    background: purple;
+    background-color: mediumpurple /* this hides the select's background making any styling visible from the div */;
+    background: gray;
     -webkit-appearance: none /* this is required for Webkit browsers */;
     border: none;
     box-shadow: none;
