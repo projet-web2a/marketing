@@ -26,7 +26,7 @@ else {
             $promotionC->supprimerPromotion($_POST['id_promotion']);
             echo $_POST['id_promotion'];
 
-       // header('Location: espacepromotion.php');
+        header('Location: espacepromotion.php');
     }
 
 }

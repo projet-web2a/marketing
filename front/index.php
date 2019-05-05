@@ -28,8 +28,7 @@ include_once "core/promotionC.php";
 include_once "core/produit.php";
 $promotionC=new PromotionC();
 $listepromotion=$promotionC->recuperenouvPromotion();
-$produitC=new produit();
-$listeproduitC=$produitC->afficherProduit();
+$listeproduitC=$promotionC->afficherProduit();
 
 $nbr_notif=$listepromotion->rowCount();
 
@@ -83,7 +82,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					</h1>
 				</div>
 <!--Notification-->
-                <li class="nav-item dropdown"> <a id="notifications" rel="nofollow" data-target="#" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link"><i class="fa fa-bell-o"></i><span class="badge bg-red badge-corner">Promotion <?PHP echo $nbr_notif ?></span></a>
+                <li class="nav-item dropdown"> <a id="notifications" rel="nofollow" data-target="#" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link"><i class="fa fa-bell-o"></i><span class="badge bg-red badge-corner">Il vous reste <?PHP echo $nbr_notif ?> promotion(s) à voir </span></a>
                     <ul aria-labelledby="notifications" class="dropdown-menu">
                         <li><a rel="nofollow" href="#" class="dropdown-item">
                                 <div class="notification">
@@ -116,7 +115,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                     <td><form method="GET" action="view/marquercommelu.php" >
 
                                             <input type="submit" name="participer" value="voir promotion" class="btn btn-primary">
-                                            <input type="hidden" value="<?PHP echo $row['id_promotion']; ?> " name="id_promotion" >
+                                            <input type="hidden" value="<?PHP echo $r['refe']; ?> " name="id_promotion" >
 
                                         </form>
 
@@ -222,8 +221,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							</a>
 
 						</li>
+
 						<li class="nav-item">
-							<a class="nav-link" href="about.html">Sale</a>
+							<a class="nav-link" href="view/afficherpromotion1.php">Sale</a>
 						</li>
 						<li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="false" aria-expanded="false"> About </a>
 						  <ul class="dropdown-menu mega-menu ">
@@ -371,6 +371,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								</li>
 							</ul>
 						</li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="view/modifiernbrvue.php">Events</a>
+
+                        </li>
 						<li class="nav-item">
 							<a class="nav-link" href="contact.html">Contact</a>
 						</li>
@@ -1686,6 +1690,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<li>
 							<a href="shop.html">Shop</a>
 						</li>
+                        <li>
+                            <a href="index.php">Events</a>
+                        </li>
 						<li>
 							<a href="contact.html">Contact Us</a>
 						</li>

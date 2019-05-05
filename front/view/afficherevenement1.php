@@ -1,30 +1,19 @@
 <?php
-require "../core/promotionC.php";
-session_start();
-
-if(isset($_SESSION['l']))
-{
-    $promotion= new PromotionC();
-    $promotion->MarquerCommeLu($_GET['id_promotion']);
- // header("Location:promotionseul.php");
-}
-else
-{         $promotion= new PromotionC();
-    $promotion->Marquerpromononlu();
-    //header("Location:promotionseul.php");
 
 
-}
+
+include "../core/evenementC.php";
 
 
- include_once "../core/promotionC.php";
 
-$promotionC=new PromotionC();
-$promotion=$promotionC->recupererPromotion($_GET['id_promotion']);
-$produit=$promotionC->recupererProduit($_GET['id_promotion']);
-$toutpromo=$promotionC->afficherProduit();
+$evenement1C=new EvenementC();
+$listeEvenement=$evenement1C->afficherEvenement();
 
+//var_dump($listeEmployes->fetchAll());
 ?>
+
+
+
 <!DOCTYPE html>
 <html lang="zxx">
 
@@ -163,7 +152,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             <span class="sr-only">(current)</span>
                         </a>
                     </li>
-                    <li class="nav-item"> <a class="nav-link" href="../about.html">SALe</a> </li>
+                    <li class="nav-item"> <a class="nav-link" href="afficherpromotion1.php">SALe</a> </li>
                     <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">aBOUT </a>
                         <ul class="dropdown-menu mega-menu ">
                             <li>
@@ -213,7 +202,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             </li>
                         </ul>
                     </li>
-                    <li class="nav-item dropdown active">
+                    <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-toggle="dropdown" aria-haspopup="true"
                            aria-expanded="false">
                             Shop
@@ -308,6 +297,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link active" href="afficherevenement1.php">Events</a>
+                    </li>
+
+                    <li class="nav-item">
                         <a class="nav-link" href="../contact.html">Contact</a>
                     </li>
 
@@ -334,299 +327,102 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     </div>
 
 </div>
-<!--//banner -->
-<!--/shop-->
-<section class="banner-bottom-wthreelayouts py-lg-5 py-3">
-    <div class="container">
-        <div class="inner-sec-shop pt-lg-4 pt-3">
-            <div class="row">
-                <div class="col-lg-4 single-right-left ">
-                    <div class="grid images_3_of_2">
-                        <div class="flexslider1">
-                            <?PHP foreach ($promotion as $row) {
-                            ?>
-                            <?PHP foreach ($produit as $r) {
-                            ?>
-                            <ul class="slides">
-                                <li data-thumb="images/d2.jpg">
-                                    <div class="thumb-image"> <img src="../images/<?PHP echo $r['url'];?>" data-imagezoom="true" class="img-fluid" alt=" "> </div>
-                                </li>
+<h1 class="tittle-w3layouts text-left my-lg-4 my-3"> Events</h1>
 
-                            </ul>
-                            <div class="clearfix"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-8 single-right-left simpleCart_shelfItem">
+<div class="mid-slider">
+    <div class="owl-carousel owl-theme row">
+        <?php
+            foreach($listeEvenement as $row){
 
+            ?>
+            <div class="item">
+                <div class="gd-box-info text-center">
+                    <div class="product-men women_two bot-gd">
+                        <div class="product-googles-info slide-img googles">
+                            <div class="men-pro-item">
+                                <div class="men-thumb-item">
+                                    <img src="../images/<?PHP echo $row['image']; ?> " alt=" " weight="100px" height="200px">
+                                    <div class="men-cart-pro">
 
-                    <h3><?php echo $r["mar"] ?></h3>
-                    <div class="grid-price mt-2"><span class="money"> <strike><?PHP echo $r['prix'] ?></strike></span>
-                        <span class="money">DT</span></div>
-                    <div class="grid-price mt-2"><span class="money"><?PHP echo $row['prixfinal'] ?></span>
-                        <span class="money">DT</span></div>
-
-                    <div class="product_price">Until <br><?PHP echo $row['datefin'] ?>
-                        </p>
-                        <div class="rating1">
-                            <ul class="stars">
-                                <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
-                                <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
-                                <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
-                                <li><a href="#"><i class="fa fa-star-half-o" aria-hidden="true"></i></a></li>
-                                <li><a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="description">
-                            <h5>Check delivery, payment options and charges at your location</h5>
-                            <form action="#" method="post">
-                                <input class="form-control" type="text" name="Email" placeholder="Please enter..."
-                                       required="">
-                                <input type="submit" value="Check">
-                            </form>
-                        </div>
-                        <div class="color-quality">
-                            <div class="color-quality-right">
-                                <h5>Quality :</h5>
-                                <select id="country1" onchange="change_country(this.value)"
-                                        class="frm-field required sect">
-                                    <option value="null">5 Qty</option>
-                                    <option value="null">6 Qty</option>
-                                    <option value="null">7 Qty</option>
-                                    <option value="null">10 Qty</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="occasional">
-                            <h5>Types :</h5>
-                            <div class="colr ert">
-                                <label class="radio"><input type="radio" name="radio" checked=""><i></i> Irayz
-                                    Butterfly(Black)</label>
-                            </div>
-                            <div class="colr">
-                                <label class="radio"><input type="radio" name="radio"><i></i> Irayz Butterfly
-                                    (Grey)</label>
-                            </div>
-                            <div class="colr">
-                                <label class="radio"><input type="radio" name="radio"><i></i> Irayz Butterfly
-                                    (white)</label>
-                            </div>
-                            <div class="clearfix"></div>
-                        </div>
-                        <div class="occasion-cart">
-                            <div class="googles single-item singlepage">
-                                <form action="#" method="post">
-                                    <input type="hidden" name="cmd" value="_cart">
-                                    <input type="hidden" name="add" value="1">
-                                    <input type="hidden" name="googles_item" value="Farenheit">
-                                    <input type="hidden" name="amount" value="575.00">
-                                    <button type="submit" class="googles-cart pgoogles-cart">
-                                        Add to Cart
-                                    </button>
-
-                                </form>
-
-                            </div>
-                        </div>
-
-                        <ul class="footer-social text-left mt-lg-4 mt-3">
-                            <li>Share On : </li>
-                            <li class="mx-2">
-                                <a href="#">
-                                    <span class="fab fa-facebook-f"></span>
-                                </a>
-                            </li>
-                            <li class="mx-2">
-                                <a href="#">
-                                    <span class="fab fa-twitter"></span>
-                                </a>
-                            </li>
-                            <li class="mx-2">
-                                <a href="#">
-                                    <span class="fab fa-google-plus-g"></span>
-                                </a>
-                            </li>
-                            <li class="mx-2">
-                                <a href="#">
-                                    <span class="fab fa-linkedin-in"></span>
-                                </a>
-                            </li>
-                            <li class="mx-2">
-                                <a href="#">
-                                    <span class="fas fa-rss"></span>
-                                </a>
-                            </li>
-
-                        </ul>
-
-                    </div>
-                    <div class="clearfix"> </div>
-                    <!--/tabs-->
-                    <div class="responsive_tabs">
-                        <div id="horizontalTab">
-                            <ul class="resp-tabs-list">
-                                <li>Description</li>
-                                <li>Reviews</li>
-                                <li>Information</li>
-                            </ul>
-                            <div class="resp-tabs-container">
-                                <!--/tab_one-->
-                                <div class="tab1">
-
-                                    <div class="single_page">
-                                        <h6><?PHP echo $r["descr"]?></h6>
-                                        <p></p>
-                                        <p class="para"></p>
                                     </div>
+                                    <span class="product-new-top">New</span>
                                 </div>
-                                <!--//tab_one-->
-                                <div class="tab2">
+                                <div class="item-info-product">
 
-                                    <div class="single_page">
-                                        <div class="bootstrap-tab-text-grids">
-                                            <div class="bootstrap-tab-text-grid">
-                                                <div class="bootstrap-tab-text-grid-left">
-                                                    <img src="../images/team1.jpg" alt=" " class="img-fluid">
-                                                </div>
-                                                <div class="bootstrap-tab-text-grid-right">
-                                                    <ul>
-                                                        <li><a href="#">Admin</a></li>
-                                                        <li><a href="#"><i class="fa fa-reply-all" aria-hidden="true"></i> Reply</a></li>
-                                                    </ul>
-                                                    <p>Give your opinion please!</p>
-                                                </div>
-                                                <div class="clearfix"> </div>
+                                    <div class="info-product-price">
+                                        <div class="grid_meta">
+                                            <div class="product_price">
+                                                <h4><?PHP echo $row['nom_evenement']; ?></h4>
+                                                <h6>L'événement commence le <?PHP echo $row['datedebut']; ?></h6>
+                                                <h6>L'événement finit le <?PHP echo $row['datefin']; ?></h6>
+                                                <p> <p>La description de l'événement<?PHP echo $row['description']; ?> </p></p>
+
+                                                <td><form method="post" action="afficherevenementseul.php" >
+
+                                                        <input type="submit" name="participer" value="voir evenement" class="btn btn-primary">
+                                                        <input type="hidden" value="<?PHP echo $row['id_evenement']; ?> " name="id_evenement" >
+
+                                                    </form>
+                                                </td>
                                             </div>
-                                            <div class="add-review">
-                                                <h4>add a review</h4>
-                                                <form action="#" method="post">
-                                                    <input class="form-control" type="text" name="Name" placeholder="Enter your email..." required="">
-                                                    <input class="form-control" type="email" name="Email" placeholder="Enter your email..." required="">
-                                                    <textarea name="Message" required></textarea>
-                                                    <input type="submit" value="SEND">
-                                                </form>
-                                            </div>
+                                            <ul class="stars">
+                                                <li>
+                                                    <a href="#">
+                                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+                                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+                                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+                                                        <i class="fa fa-star-half-o" aria-hidden="true"></i>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+                                                        <i class="fa fa-star-o" aria-hidden="true"></i>
+                                                    </a>
+                                                </li>
+                                            </ul>
                                         </div>
+                                        <div class="googles single-item hvr-outline-out">
+                                            <form action="#" method="post">
+                                                <input type="hidden" name="cmd" value="_cart">
+                                                <input type="hidden" name="add" value="1">
+                                                <input type="hidden" name="googles_item" value="Fastrack Aviator">
+                                                <input type="hidden" name="amount" value="325.00">
+                                                <button type="submit" class="googles-cart pgoogles-cart">
+                                                    <i class="fas fa-cart-plus"></i>
+                                                </button>
+                                            </form>
 
-                                    </div>
-                                </div>
-                                <div class="tab3">
-
-                                    <div class="single_page">
-                                        <h6>Irayz Butterfly Sunglasses  (Black)</h6>
-                                        <p>In the stock only  <?PHP echo $r["qte"]?>pieces</p>
-                                        <p class="para"></p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <?php
-                    }
-                    ?>
-                    <?php
-                    }
-                    ?>
-
-                    <!--//tabs-->
-
-                </div>
-            </div>
-        </div>
-        <div class="container-fluid">
-            <!--/slide-->
-            <div class="slider-img mid-sec mt-lg-5 mt-2 px-lg-5 px-3">
-                <!--//banner-sec-->
-                <h3 class="tittle-w3layouts text-left my-lg-4 my-3">Featured Products</h3>
-
-                <div class="mid-slider">
-                    <div class="owl-carousel owl-theme row">
-                        <?php foreach ($toutpromo as $promo){
-                            ?>
-                            <div class="item">
-                                <div class="gd-box-info text-center">
-                                    <div class="product-men women_two bot-gd">
-                                        <div class="product-googles-info slide-img googles">
-                                            <div class="men-pro-item">
-                                                <div class="men-thumb-item">
-                                                    <img src="../images/<?php echo $promo['url'] ?>" class="img-fluid" alt="">
-                                                    <div class="men-cart-pro">
-                                                        <div class="inner-men-cart-pro">
-                                                            <a href="promotionseul.php?maction=<?PHP echo $promo['refe']?>" class="link-product-add-cart">Quick View</a>
-                                                        </div>
-                                                    </div>
-                                                    <span class="product-new-top">New</span>
-                                                </div>
-                                                <div class="item-info-product">
-
-                                                    <div class="info-product-price">
-                                                        <div class="grid_meta">
-                                                            <div class="product_price">
-                                                                <h4>
-                                                                    <a href="promotionseul.php?maction=<?PHP echo $promo['refe']?>"><?PHP echo $promo["mar"] ?></a>
-                                                                </h4>
-                                                                <div class="grid-price mt-2">
-                                                                    <span class="money "><strike><?php echo $promo['prix']?></strike>DT</span>
-                                                                </div>
-                                                            </div>
-                                                            <ul class="stars">
-                                                                <li>
-                                                                    <a href="#">
-                                                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                                                    </a>
-                                                                </li>
-                                                                <li>
-                                                                    <a href="#">
-                                                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                                                    </a>
-                                                                </li>
-                                                                <li>
-                                                                    <a href="#">
-                                                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                                                    </a>
-                                                                </li>
-                                                                <li>
-                                                                    <a href="#">
-                                                                        <i class="fa fa-star-half-o" aria-hidden="true"></i>
-                                                                    </a>
-                                                                </li>
-                                                                <li>
-                                                                    <a href="#">
-                                                                        <i class="fa fa-star-o" aria-hidden="true"></i>
-                                                                    </a>
-                                                                </li>
-                                                            </ul>
-                                                        </div>
-                                                        <div class="googles single-item hvr-outline-out">
-                                                            <form action="#" method="post">
-                                                                <input type="hidden" name="cmd" value="_cart">
-                                                                <input type="hidden" name="add" value="1">
-                                                                <input type="hidden" name="googles_item" value="Fastrack Aviator">
-                                                                <input type="hidden" name="amount" value="325.00">
-                                                                <button type="submit" class="googles-cart pgoogles-cart">
-                                                                    <i class="fas fa-cart-plus"></i>
-                                                                </button>
-                                                            </form>
-
-                                                        </div>
-                                                    </div>
-
-                                                </div>
-                                            </div>
                                         </div>
                                     </div>
+
                                 </div>
                             </div>
-                        <?php }?>
-
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        <?php }?>
+
     </div>
-    </div>
-    </div>
-    </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
 
 </section>
 <!--footer -->
@@ -705,9 +501,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <li>
                         <a href="404.html">Error</a>
                     </li>
+
                     <li>
                         <a href="shop.html">Shop</a>
                     </li>
+
                     <li>
                         <a href="contact.html">Contact Us</a>
                     </li>
@@ -1066,7 +864,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             <span class="sr-only">(current)</span>
                         </a>
                     </li>
-                    <li class="nav-item"> <a class="nav-link" href="../about.html">SALe</a> </li>
+                    <li class="nav-item"> <a class="nav-link" href="afficherpromotion1.php">SALe</a> </li>
                     <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">aBOUT </a>
                         <ul class="dropdown-menu mega-menu ">
                             <li>

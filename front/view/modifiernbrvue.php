@@ -23,5 +23,5 @@ foreach($listeEvenement as $row) {
     $evenementC->modifierEvenementvue($evenement, $id_evenement);
 
 }
-header('Location:  afficherevenement.php');
+header('Location:  afficherevenement1.php');
 ?>

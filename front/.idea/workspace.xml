@@ -4,8 +4,8 @@
     <bookmark url="file://$PROJECT_DIR$/../admin/core/evenementC.php" description="global $db;" line="8" />
     <bookmark url="file://$PROJECT_DIR$/core/evenementC.php" description="$sql = &quot;SElECT * From evenement&quot;;" line="8" />
     <bookmark url="file://$PROJECT_DIR$/core/promotionC.php" description="and datefin&gt;$time" line="19" />
-    <bookmark url="file://$PROJECT_DIR$/core/promotionC.php" description="afficher" line="231" />
     <bookmark url="file://$PROJECT_DIR$/view/afficherevenement.php" description="&lt;input type=&quot;hidden&quot; value=&quot;&lt;?PHP echo $row['id_ev..." line="333" />
+    <bookmark url="file://$PROJECT_DIR$/core/promotionC.php" description="afficher" line="243" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="55b69af3-1f6b-4939-bf72-4978dfdd8468" name="Default Changelist" comment="" />
@@ -34,24 +34,26 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="311">
-              <caret line="920" column="40" selection-start-line="920" selection-start-column="40" selection-end-line="920" selection-end-column="40" />
-              <folding>
-                <element signature="e#58422#58428#0#HTML" expanded="true" />
-                <element signature="e#58968#58975#1#HTML" expanded="true" />
-              </folding>
+            <state relative-caret-position="381">
+              <caret line="237" column="32" selection-start-line="237" selection-start-column="32" selection-end-line="237" selection-end-column="32" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/view/promotionseul.php">
+        <entry file="file://$PROJECT_DIR$/view/modifiernbrvue.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="311" lean-forward="true" selection-start-line="311" selection-end-line="311" />
-              <folding>
-                <element signature="e#37053#37059#0#HTML" expanded="true" />
-              </folding>
+            <state relative-caret-position="425">
+              <caret line="25" column="37" selection-start-line="25" selection-start-column="37" selection-end-line="25" selection-end-column="37" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/view/afficherevenement.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="374">
+              <caret line="335" column="50" lean-forward="true" selection-start-line="325" selection-start-column="43" selection-end-line="335" selection-end-column="50" />
             </state>
           </provider>
         </entry>
@@ -59,71 +61,62 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/view/afficherevenementseul.php">
           <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="323">
+              <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/view/afficherparticipationajouter.php">
+          <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="177">
-              <caret line="11" column="56" selection-start-line="11" selection-start-column="56" selection-end-line="11" selection-end-column="56" />
+              <caret line="58" column="48" selection-start-line="58" selection-start-column="44" selection-end-line="58" selection-end-column="48" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/view/afficherpromotion1.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="194">
+              <caret line="298" column="25" lean-forward="true" selection-start-line="296" selection-start-column="17" selection-end-line="298" selection-end-column="25" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/view/afficherevenement.php">
+        <entry file="file://$PROJECT_DIR$/view/afficherevenement1.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="177">
-              <caret line="320" column="114" selection-start-line="320" selection-start-column="114" selection-end-line="320" selection-end-column="114" />
+              <caret line="862" column="96" selection-start-line="862" selection-start-column="92" selection-end-line="862" selection-end-column="96" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/config.php">
+        <entry file="file://$PROJECT_DIR$/view/promotionseul.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
+            <state relative-caret-position="192">
+              <caret line="569" column="60" lean-forward="true" selection-start-line="569" selection-start-column="60" selection-end-line="569" selection-end-column="60" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/core/participationC.php">
+        <entry file="file://$PROJECT_DIR$/view/marquercommelu.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="376">
-              <caret line="33" column="41" lean-forward="true" selection-start-line="33" selection-start-column="41" selection-end-line="33" selection-end-column="41" />
+            <state relative-caret-position="379">
+              <caret line="238" column="48" lean-forward="true" selection-start-line="238" selection-start-column="48" selection-end-line="238" selection-end-column="48" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/view/recevoirnotificationpromo.php">
+        <entry file="file://$PROJECT_DIR$/view/afficherpromotion.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="9" selection-start-line="9" selection-end-line="9" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/core/evenementC.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret lean-forward="true" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/core/promotionC.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="311">
-              <caret line="279" column="24" selection-start-line="279" selection-start-column="24" selection-end-line="279" selection-end-column="24" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/core/produit.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="13" column="20" selection-start-line="13" selection-start-column="20" selection-end-line="13" selection-end-column="20" />
+            <state relative-caret-position="245">
+              <caret line="160" column="49" lean-forward="true" selection-start-line="160" selection-start-column="49" selection-end-line="160" selection-end-column="49" />
             </state>
           </provider>
         </entry>
@@ -132,36 +125,36 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
+      <find>recupererPromotion</find>
+      <find>la</find>
+      <find>promo</find>
+      <find>listepromotion</find>
+      <find>afficherprodui</find>
+      <find>voir promo</find>
       <find>recupererProduit</find>
-      <find>you have</find>
-      <find>eyezone</find>
-      <find>add t</find>
-      <find>eye</find>
-      <find>featu</find>
-      <find>descr</find>
-      <find>desc</find>
-      <find>4</find>
-      <find>nouv</find>
-      <find>stock</find>
-      <find>toutp</find>
-      <find>produit</find>
-      <find>prom</find>
-      <find>$r</find>
-      <find>recupere</find>
-      <find>recupererpromo</find>
-      <find>afficher</find>
-      <find>fore</find>
-      <find>new arri</find>
-      <find>row</find>
-      <find>maction</find>
-      <find>section</find>
-      <find>strike</find>
-      <find>inclu</find>
-      <find>con</find>
-      <find>CONFI</find>
+      <find>quick</find>
+      <find>need hel</find>
+      <find>need help</find>
+      <find>need he</find>
+      <find>voir promotio</find>
+      <find>promotionseul</find>
+      <find>sectio</find>
+      <find>mactio</find>
+      <find>foreach</find>
+      <find>forea</find>
+      <find>foreac</find>
       <find>incl</find>
-      <find>config</find>
-      <find>php</find>
+      <find>fore</find>
+      <find>fea</find>
+      <find>promotio</find>
+      <find>evenets</find>
+      <find>about</find>
+      <find>ale</find>
+      <find>shop</find>
+      <find>contact</find>
+      <find>home</find>
+      <find>events</find>
+      <find>sale</find>
     </findStrings>
   </component>
   <component name="IdeDocumentHistory">
@@ -182,7 +175,6 @@
         <option value="$PROJECT_DIR$/view/afficherevenementseulparticiper.php" />
         <option value="$PROJECT_DIR$/core/crudevenementC.php" />
         <option value="$PROJECT_DIR$/core/crudparticipationC.php" />
-        <option value="$PROJECT_DIR$/view/modifiernbrvue.php" />
         <option value="$PROJECT_DIR$/../admin/core/promotionC.php" />
         <option value="$PROJECT_DIR$/view/supprimerevenement.php" />
         <option value="$PROJECT_DIR$/view/recevoirnotificationpromo.php" />
@@ -196,16 +188,21 @@
         <option value="$PROJECT_DIR$/core/participationC.php" />
         <option value="$PROJECT_DIR$/view/afficherevenementseul.php" />
         <option value="$PROJECT_DIR$/view/loginmarketing.php" />
-        <option value="$PROJECT_DIR$/view/marquercommelu.php" />
         <option value="$PROJECT_DIR$/view/deconnexion.php" />
-        <option value="$PROJECT_DIR$/view/promotionseul.php" />
-        <option value="$PROJECT_DIR$/index.php" />
         <option value="$PROJECT_DIR$/view/afficherpromotion.php" />
         <option value="$PROJECT_DIR$/config.php" />
-        <option value="$PROJECT_DIR$/core/evenementC.php" />
-        <option value="$PROJECT_DIR$/core/promotionC.php" />
         <option value="$PROJECT_DIR$/core/produit.php" />
         <option value="$PROJECT_DIR$/view/afficherevenement.php" />
+        <option value="$PROJECT_DIR$/core/evenementC.php" />
+        <option value="$PROJECT_DIR$/core/promotionC.php" />
+        <option value="$PROJECT_DIR$/view/marquercommelu.php" />
+        <option value="$PROJECT_DIR$/view/promotionseul.php" />
+        <option value="$PROJECT_DIR$/index.php" />
+        <option value="$PROJECT_DIR$/view/evenementseul1.php" />
+        <option value="$PROJECT_DIR$/view/affichervenement1.php" />
+        <option value="$PROJECT_DIR$/view/modifiernbrvue.php" />
+        <option value="$PROJECT_DIR$/view/afficherpromotion1.php" />
+        <option value="$PROJECT_DIR$/view/afficherevenement1.php" />
       </list>
     </option>
   </component>
@@ -236,7 +233,7 @@
             <path>
               <item name="front" type="b2602c69:ProjectViewProjectNode" />
               <item name="front" type="462c0819:PsiDirectoryNode" />
-              <item name="css" type="462c0819:PsiDirectoryNode" />
+              <item name="entite" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="front" type="b2602c69:ProjectViewProjectNode" />
@@ -300,17 +297,21 @@
       <workItem from="1556559700575" duration="9908000" />
       <workItem from="1556569711538" duration="1332000" />
       <workItem from="1556572523528" duration="15141000" />
+      <workItem from="1556638755190" duration="1700000" />
+      <workItem from="1557006200242" duration="5806000" />
+      <workItem from="1557050762225" duration="7136000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="151787000" />
+    <option name="totallyTimeSpent" value="166429000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Favorites" order="0" side_tool="true" />
-      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.2549168" />
+      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.2632375" />
       <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="0" />
       <window_info anchor="bottom" id="Database Changes" order="1" />
@@ -334,8 +335,6 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/core/crudreducationC.php.php" />
-    <entry file="file://$PROJECT_DIR$/core/crudparticipation.php" />
     <entry file="file://$PROJECT_DIR$/view/ajouterevenement.php" />
     <entry file="file://$PROJECT_DIR$/view/ajouterutilisateur.php" />
     <entry file="file://$PROJECT_DIR$/view/chercherevenement.php" />
@@ -397,13 +396,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/view/modifiernbrvue.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="29" lean-forward="true" selection-start-line="16" selection-start-column="29" selection-end-line="16" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/view/saintvalentin.jpg">
       <provider selected="true" editor-type-id="images" />
     </entry>
@@ -442,13 +434,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/entite/promotion.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="23" column="27" selection-start-line="23" selection-start-column="27" selection-end-line="23" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/view/supprimerevenement.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
@@ -467,13 +452,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="5576">
           <caret line="328" column="39" selection-start-line="328" selection-start-column="39" selection-end-line="328" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/view/marquercommelu.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" selection-start-line="11" selection-start-column="9" selection-end-line="14" />
         </state>
       </provider>
     </entry>
@@ -529,13 +507,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/view/afficherparticipationajouter.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="552">
-          <caret line="327" column="3" selection-start-line="327" selection-start-column="3" selection-end-line="327" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/view/participerevenement.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="529">
@@ -543,73 +514,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/view/afficherpromotion.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="177">
-          <caret line="305" column="38" selection-start-line="305" selection-start-column="38" selection-end-line="305" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/view/promotionseul.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="311" lean-forward="true" selection-start-line="311" selection-end-line="311" />
-          <folding>
-            <element signature="e#37053#37059#0#HTML" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="311">
-          <caret line="920" column="40" selection-start-line="920" selection-start-column="40" selection-end-line="920" selection-end-column="40" />
-          <folding>
-            <element signature="e#58422#58428#0#HTML" expanded="true" />
-            <element signature="e#58968#58975#1#HTML" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/view/afficherevenementseul.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="177">
-          <caret line="11" column="56" selection-start-line="11" selection-start-column="56" selection-end-line="11" selection-end-column="56" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/config.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="289">
-          <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
+          <caret line="17" selection-start-line="17" selection-end-line="17" />
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/entite/users.php">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/core/evenementC.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret lean-forward="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/promotionC.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="311">
-          <caret line="279" column="24" selection-start-line="279" selection-start-column="24" selection-end-line="279" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/produit.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="13" column="20" selection-start-line="13" selection-start-column="20" selection-end-line="13" selection-end-column="20" />
+        <state relative-caret-position="529">
+          <caret line="200" column="2" lean-forward="true" selection-start-line="200" selection-start-column="2" selection-end-line="200" selection-end-column="2" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/core/participationC.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="376">
-          <caret line="33" column="41" lean-forward="true" selection-start-line="33" selection-start-column="41" selection-end-line="33" selection-end-column="41" />
+        <state relative-caret-position="552">
+          <caret line="33" column="41" selection-start-line="33" selection-start-column="41" selection-end-line="33" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/entite/promotion.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="43" selection-start-line="12" selection-start-column="43" selection-end-line="12" selection-end-column="43" />
         </state>
       </provider>
     </entry>
@@ -620,10 +552,87 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/core/produit.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="22" column="1" lean-forward="true" selection-start-line="22" selection-start-column="1" selection-end-line="22" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/promotionC.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="107">
+          <caret line="132" column="50" selection-start-line="132" selection-start-column="47" selection-end-line="132" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/view/promotionseul.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="192">
+          <caret line="569" column="60" lean-forward="true" selection-start-line="569" selection-start-column="60" selection-end-line="569" selection-end-column="60" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/view/afficherevenement.php">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="335" column="50" lean-forward="true" selection-start-line="325" selection-start-column="43" selection-end-line="335" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/view/afficherevenementseul.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/view/afficherparticipationajouter.php">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="177">
-          <caret line="320" column="114" selection-start-line="320" selection-start-column="114" selection-end-line="320" selection-end-column="114" />
+          <caret line="58" column="48" selection-start-line="58" selection-start-column="44" selection-end-line="58" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/view/modifiernbrvue.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="25" column="37" selection-start-line="25" selection-start-column="37" selection-end-line="25" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/view/marquercommelu.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="379">
+          <caret line="238" column="48" lean-forward="true" selection-start-line="238" selection-start-column="48" selection-end-line="238" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/view/afficherpromotion.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="245">
+          <caret line="160" column="49" lean-forward="true" selection-start-line="160" selection-start-column="49" selection-end-line="160" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="381">
+          <caret line="237" column="32" selection-start-line="237" selection-start-column="32" selection-end-line="237" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/view/afficherpromotion1.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="194">
+          <caret line="298" column="25" lean-forward="true" selection-start-line="296" selection-start-column="17" selection-end-line="298" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/view/afficherevenement1.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="177">
+          <caret line="862" column="96" selection-start-line="862" selection-start-column="92" selection-end-line="862" selection-end-column="96" />
         </state>
       </provider>
     </entry>

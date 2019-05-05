@@ -3,7 +3,7 @@
 require_once  '../config.php';
 $db=config::getConnexion();
 
-$req1= $db->query("select sum(nbrvue) as nb, nom_evenement as nom from evenement GROUP by nom_evenement "
+$req1= $db->query("select sum(nbrparticipant) as nb, nom_evenement as nom from evenement GROUP by nom_evenement "
 );
 $req1->execute();
 $liste= $req1->fetchALL();
